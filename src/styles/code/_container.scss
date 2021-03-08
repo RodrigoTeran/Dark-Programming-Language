@@ -1,0 +1,9 @@
+.containerCode {
+  width: calc(50% - 1.5px);
+  outline: solid 1px var(--border-color-body);
+  height: calc(100vh - 50px);
+  padding: 10px;
+  @media screen and (max-width: $phone-width){
+    width: 100% !important;
+  }
+}

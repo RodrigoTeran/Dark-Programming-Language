@@ -1,0 +1,38 @@
+.layout {
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: $phone-width){
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+.draggable {
+  background-color: var(--border-color-body);
+  width: 3px;
+  height: calc(100vh - 50px);
+  cursor: ew-resize;
+  transition: transform linear .1s;
+  position: relative;
+  &::before{
+    position: absolute;
+    content: "";
+    z-index: 1;
+    background-color: transparent;
+    width: 12px;
+    height: 100%;
+    top: 0;
+    left: -6px;
+  }
+  @media (hover:hover) and (pointer:fine) {
+    &:hover {
+      transform: scaleX(4);
+      &::before{
+        transform: scaleX(2); 
+      }
+    }
+  }
+  @media screen and (max-width: $phone-width){
+    display: none;
+  }
+}
