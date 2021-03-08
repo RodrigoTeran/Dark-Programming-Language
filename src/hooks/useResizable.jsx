@@ -27,12 +27,10 @@ export const useResizable = ({ draggableRef, left, right }) => {
       if (leftPercentage <= 20) {
         leftPercentage = 20;
         rightPercentage = 80;
-        handleMouseUp();
       }
       if (leftPercentage >= 80) {
         leftPercentage = 80;
         rightPercentage = 20;
-        handleMouseUp();
       }
       left.current.style.width = `${leftPercentage}%`;
       right.current.style.width = `${rightPercentage}%`;

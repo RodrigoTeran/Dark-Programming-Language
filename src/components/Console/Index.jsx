@@ -4,7 +4,7 @@ import React from "react";
 const IndexConsole = ({ consoleRef }) => {
   return (
     <div ref={consoleRef} className="containerConsole">
-      CONSOLE
+      <h2>CONSOLE</h2>
     </div>
   );
 };

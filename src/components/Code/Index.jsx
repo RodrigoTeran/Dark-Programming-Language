@@ -4,7 +4,9 @@ import React from "react";
 const IndexCode = ({ codeRef }) => {
   return (
     <div className="containerCode" ref={codeRef}>
-      CODE
+      <h2>
+        DARK CODE
+      </h2>
     </div>
   );
 };

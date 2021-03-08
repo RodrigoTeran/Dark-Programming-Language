@@ -9,4 +9,77 @@
   display: flex;
   align-items: center;
   padding: 0 10px;
+  position: relative;
+  h1 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    span {
+      color: var(--text-color-body-2);
+      font-weight: bold;
+    }
+  }
+  button {
+    background-color: var(--text-color-body-2);
+    height: 80%;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: calc(50% - 50px);
+    align-items: center;
+    color: var(--svg-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: transform linear 0.1s;
+    cursor: pointer;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &:nth-child(1) {
+        margin: 0 5px 0 0;
+      }
+      &:nth-child(2) {
+        margin: 0 0 0 5px;
+      }
+    }
+    svg {
+      fill: var(--svg-color);
+      width: 20px;
+      height: 20px;
+      transition: transform linear 0.3s;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        transform: scaleX(1.1);
+        svg {
+          transform: rotateZ(360deg);
+        }
+      }
+      &:active {
+        transform: scaleX(1);
+      }
+    }
+  }
+  @media screen and (max-width: $phone-width) {
+    flex-direction: column;
+    padding: 10px 0 5px 0;
+    height: 100px;
+    justify-content: center;
+    button {
+      position: static;
+      height: 50%;
+      margin: 10px 0 0 0;
+      width: 320px;
+    }
+    h1 {
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 320px) {
+    height: 110px;
+    button {
+      width: 95%;
+    }
+  }
 }
