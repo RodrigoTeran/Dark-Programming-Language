@@ -1,13 +1,20 @@
 // React
 import React from "react";
 
-const IndexNav = () => {
+// Functions
+import { codeToLexer } from "../../functions/code";
+
+const IndexNav = ({ textAreaCodeRef }) => {
   return (
     <nav className="navLayout">
       <h1>
         <span>DARK</span> PROGRAMMING LANGUAGE
       </h1>
-      <button>
+      <button
+        onClick={() => {
+          codeToLexer(textAreaCodeRef.current.value);
+        }}
+      >
         <div>RUN</div>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

@@ -10,12 +10,16 @@ import Draggable from "./components/Draggable";
 const App = () => {
   // Hooks
   const codeRef = useRef(null);
+  const textAreaCodeRef = useRef(null);
   const consoleRef = useRef(null);
   return (
     <>
-      <IndexNav></IndexNav>
+      <IndexNav textAreaCodeRef={textAreaCodeRef}></IndexNav>
       <div className="layout">
-        <IndexCode codeRef={codeRef}></IndexCode>
+        <IndexCode
+          codeRef={codeRef}
+          textAreaCodeRef={textAreaCodeRef}
+        ></IndexCode>
         <Draggable consoleRef={consoleRef} codeRef={codeRef}></Draggable>
         <IndexConsole consoleRef={consoleRef}></IndexConsole>
       </div>

@@ -1,7 +1,7 @@
 // React
 import React, { useState, useRef } from "react";
 
-const IndexCode = ({ codeRef }) => {
+const IndexCode = ({ codeRef, textAreaCodeRef }) => {
   // Hooks
   const [numberOfRows, setNumberOfRows] = useState([1]);
   const rowsRef = useRef(null);
@@ -34,6 +34,7 @@ const IndexCode = ({ codeRef }) => {
             onScroll={tranformRows}
             onChange={onTextAreaChange}
             spellCheck="false"
+            ref={textAreaCodeRef}
           ></textarea>
         </div>
       </div>
