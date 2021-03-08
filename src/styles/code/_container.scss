@@ -3,11 +3,64 @@
   outline: solid 1px var(--border-color-body);
   height: calc(100vh - 50px);
   word-break: break-all;
+  overflow: hidden;
   h2 {
     background-color: var(--background-color-body-2);
     padding: 10px;
+    height: 50px;
+    position: sticky;
+    top: 0;
+    height: 50px;
   }
-  @media screen and (max-width: $phone-width){
+  &__code {
+    overflow-y: scroll;
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &__rows {
+      width: 40px;
+      background-color: var(--background-color-body-2);
+      height: 100%;
+      div {
+        text-align: center;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    &__text {
+      width: calc(100% - 40px);
+      height: 100%;
+      &__textarea {
+        overflow: hidden;
+        width: 100%;
+        div {
+          height: 30px;
+          display: flex;
+          align-items: center;
+          &:nth-child(1){
+            margin: 3px 0 0 0;
+          }
+        }
+        font-size: 1.2rem;
+        outline: none;
+
+        height: 100%;
+
+        color: var(--svg-color);
+        background-color: transparent;
+        padding: 5px 10px 0 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: $phone-width) {
     width: 100% !important;
   }
 }
