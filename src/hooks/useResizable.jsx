@@ -8,16 +8,16 @@ export const useResizable = ({ draggableRef, left, right }) => {
   useEffect(() => {
     draggableRef.current.addEventListener("mousedown", handleMouseDown);
     return () => {
-      draggableRef.current.removeEventListener("mousemove", handleMouseMove);
+      draggableRef.current.removeEventListener("mousedown", handleMouseDown);
     };
   });
   const handleMouseDown = () => {
-    draggableRef.current.addEventListener("mousemove", handleMouseMove);
-    draggableRef.current.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
   };
   const handleMouseUp = () => {
-    draggableRef.current.removeEventListener("mousemove", handleMouseMove);
-    draggableRef.current.removeEventListener("mouseup", handleMouseUp);
+    window.removeEventListener("mousemove", handleMouseMove);
+    window.removeEventListener("mouseup", handleMouseUp);
   };
   const handleMouseMove = (e) => {
     if (window.innerWidth > PHONE_WIDTH) {

@@ -1,7 +1,7 @@
 .layout {
   display: flex;
   justify-content: center;
-  @media screen and (max-width: $phone-width){
+  @media screen and (max-width: $phone-width) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -12,27 +12,15 @@
   width: 3px;
   height: calc(100vh - 50px);
   cursor: ew-resize;
-  transition: transform linear .1s;
+  transition: transform linear 0.1s;
   position: relative;
-  &::before{
-    position: absolute;
-    content: "";
-    z-index: 1;
-    background-color: transparent;
-    width: 12px;
-    height: 100%;
-    top: 0;
-    left: 0px;
-  }
-  @media (hover:hover) and (pointer:fine) {
+
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: scaleX(4);
-      &::before{
-        transform: scaleX(2); 
-      }
     }
   }
-  @media screen and (max-width: $phone-width){
+  @media screen and (max-width: $phone-width) {
     display: none;
   }
 }

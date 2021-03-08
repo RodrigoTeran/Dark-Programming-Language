@@ -1,50 +1,40 @@
 // React
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 const IndexCode = ({ codeRef }) => {
   // Hooks
   const [numberOfRows, setNumberOfRows] = useState([1]);
-  const textAreaRef = useRef(null);
+  const rowsRef = useRef(null);
 
-  useEffect(() => {
-    textAreaRef.current.addEventListener("input", onTextAreaChange);
-    return () => {
-      textAreaRef.current.removeEventListener("input", onTextAreaChange);
-    };
-  });
-
-  const onTextAreaChange = () => {
-    var textTextArea = textAreaRef.current.innerHTML;
-    var numberRows = (textTextArea.match(/<div>/g) || []).length + 1;
-
-    var numberRows = (textTextArea.match(/<div>/g) || []).length + 1;
-    if (numberRows >= 19) {
-      textAreaRef.current.style.height = "auto";
-    } else {
-      textAreaRef.current.style.height = "100%";
-    }
+  const tranformRows = (e) => {
+    // Transform the rows
+    rowsRef.current.style.transform = `translateY(-${e.target.scrollTop}px)`;
+  };
+  const onTextAreaChange = (e) => {
+    var textTextArea = e.target.value;
+    var numberRows = textTextArea.split("\n").length;
     var newArrayRows = [];
     for (var i = 1; i < numberRows + 1; i++) {
       newArrayRows.push(i);
     }
+    tranformRows(e);
     setNumberOfRows(newArrayRows);
   };
   return (
     <div className="containerCode" ref={codeRef}>
       <h2>DARK CODE</h2>
       <div className="containerCode__code">
-        <div className="containerCode__code__rows">
+        <div className="containerCode__code__rows" ref={rowsRef}>
           {numberOfRows.map((number, index) => {
             return <div key={index}>{number}</div>;
           })}
         </div>
         <div className="containerCode__code__text">
-          <div
+          <textarea
+            onScroll={tranformRows}
+            onChange={onTextAreaChange}
             spellCheck="false"
-            contentEditable="true"
-            className="containerCode__code__text__textarea"
-            ref={textAreaRef}
-          ></div>
+          ></textarea>
         </div>
       </div>
     </div>
