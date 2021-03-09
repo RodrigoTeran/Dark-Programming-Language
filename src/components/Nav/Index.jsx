@@ -2,20 +2,21 @@
 import React from "react";
 
 // Functions
-import { lexer } from "../../dark/lexer";
+// import { lexer } from "../../dark/lexer";
 import { codeToParse } from "../../dark/parse";
+import { generateJsForStatements } from "../../dark/generate";
 
-const IndexNav = ({ textAreaCodeRef }) => {
-  const codeToLexer = () => {
-    lexer.reset(textAreaCodeRef.current.value);
-    while (true) {
-      const token = lexer.next();
-      if (!token) {
-        break;
-      }
-      console.log(token);
-    }
-  };
+const IndexNav = ({ textAreaCodeRef, setCodeOutput }) => {
+  // const codeToLexer = () => {
+  //   lexer.reset(textAreaCodeRef.current.value);
+  //   while (true) {
+  //     const token = lexer.next();
+  //     if (!token) {
+  //       break;
+  //     }
+  //     console.log(token);
+  //   }
+  // };
   return (
     <nav className="navLayout">
       <h1>
@@ -24,8 +25,10 @@ const IndexNav = ({ textAreaCodeRef }) => {
       <button
         onClick={() => {
           // codeToLexer(textAreaCodeRef.current.value);
-          codeToLexer();
-          codeToParse(textAreaCodeRef.current.value);
+          // codeToLexer();
+          const statements = codeToParse(textAreaCodeRef.current.value);
+          const js = generateJsForStatements(statements);
+          setCodeOutput(js);
         }}
       >
         <div>RUN</div>

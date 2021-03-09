@@ -5,9 +5,8 @@ import grammar from "./parsed-dark";
 const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
 
 export const codeToParse = (code) => {
-  console.log("code: ", code);
   parser.feed(code);
-  console.log(JSON.stringify(parser.results[0], null, "    "));
-};
+  // console.log(JSON.stringify(parser.results[0], null, "    "));
 
-console.log(parser.results);
+  return parser.results[0];
+};

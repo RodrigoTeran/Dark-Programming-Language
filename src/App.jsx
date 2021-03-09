@@ -1,5 +1,5 @@
 // React
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 // Components
 import IndexNav from "./components/Nav/Index";
@@ -12,16 +12,25 @@ const App = () => {
   const codeRef = useRef(null);
   const textAreaCodeRef = useRef(null);
   const consoleRef = useRef(null);
+
+  // Output
+  const [codeOutput, setCodeOutput] = useState("");
   return (
     <>
-      <IndexNav textAreaCodeRef={textAreaCodeRef}></IndexNav>
+      <IndexNav
+        setCodeOutput={setCodeOutput}
+        textAreaCodeRef={textAreaCodeRef}
+      ></IndexNav>
       <div className="layout">
         <IndexCode
           codeRef={codeRef}
           textAreaCodeRef={textAreaCodeRef}
         ></IndexCode>
         <Draggable consoleRef={consoleRef} codeRef={codeRef}></Draggable>
-        <IndexConsole consoleRef={consoleRef}></IndexConsole>
+        <IndexConsole
+          codeOutput={codeOutput}
+          consoleRef={consoleRef}
+        ></IndexConsole>
       </div>
     </>
   );
