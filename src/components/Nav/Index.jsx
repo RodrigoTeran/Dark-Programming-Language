@@ -2,9 +2,20 @@
 import React from "react";
 
 // Functions
-import { codeToLexer } from "../../functions/code";
+import { lexer } from "../../dark/lexer";
+import { codeToParse } from "../../dark/parse";
 
 const IndexNav = ({ textAreaCodeRef }) => {
+  const codeToLexer = () => {
+    lexer.reset(textAreaCodeRef.current.value);
+    while (true) {
+      const token = lexer.next();
+      if (!token) {
+        break;
+      }
+      console.log(token);
+    }
+  };
   return (
     <nav className="navLayout">
       <h1>
@@ -12,7 +23,9 @@ const IndexNav = ({ textAreaCodeRef }) => {
       </h1>
       <button
         onClick={() => {
-          codeToLexer(textAreaCodeRef.current.value);
+          // codeToLexer(textAreaCodeRef.current.value);
+          codeToLexer();
+          codeToParse(textAreaCodeRef.current.value);
         }}
       >
         <div>RUN</div>
