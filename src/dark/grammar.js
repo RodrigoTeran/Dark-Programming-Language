@@ -7,6 +7,7 @@ export const grammar = {
   rparen: ")",
   lbrace: "{",
   rbrace: "}",
+  comma: ",",
 
   // Functions
   function: "task",

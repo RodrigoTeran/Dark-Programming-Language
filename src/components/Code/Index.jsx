@@ -31,6 +31,7 @@ const IndexCode = ({ codeRef, textAreaCodeRef }) => {
         </div>
         <div className="containerCode__code__text">
           <textarea
+            wrap="off"
             onScroll={tranformRows}
             onChange={onTextAreaChange}
             spellCheck="false"
