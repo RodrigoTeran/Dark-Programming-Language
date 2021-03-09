@@ -1,5 +1,5 @@
 import nearley from "nearley";
-import grammar from "./parsed-dark";
+import grammar from "./parsed-dark"
 
 export const codeToParse = (code) => {
   try {
@@ -8,6 +8,6 @@ export const codeToParse = (code) => {
     parser.feed(code);
     return parser.results[0];
   } catch (error) {
-    return `Syntax error: unhandled expression`
+    return `Syntax error: unhandled expression`;
   }
 };
