@@ -13,7 +13,6 @@ export const grammar = {
   function: "task",
 
   // Built in functions
-  print: "speak",
   break: "smash",
 
   // Loops

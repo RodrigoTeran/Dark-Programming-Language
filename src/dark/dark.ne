@@ -21,7 +21,8 @@ statements
 
 statement
   -> var_assign     {% id %}
-  | fun_call     {% id %}
+  | fun_call        {% id %}
+  | _               {% id %}
 
 var_assign
   -> %identifier _ %assign _ expr
@@ -54,10 +55,10 @@ arg_list
           return [data[0]];
         }
       %}
-  | arg_list _ %comma _ expr
+  | arg_list __ expr
       {%
         (data) => {
-          return [...data[0], data[4]];
+          return [...data[0], data[2]];
         }
       %}
 
@@ -71,6 +72,13 @@ expr
 
 # Optional whitespace
 _ -> %WS:*
+      {%
+        (data) => {
+          return {
+            type: "empty_line",
+          }
+        }
+      %}
 
 # Mandatory whitespace
 __ -> %WS:+

@@ -19,6 +19,7 @@ var grammar = {
               },
     {"name": "statement", "symbols": ["var_assign"], "postprocess": id},
     {"name": "statement", "symbols": ["fun_call"], "postprocess": id},
+    {"name": "statement", "symbols": ["_"], "postprocess": id},
     {"name": "var_assign", "symbols": [(lexer.has("identifier") ? {type: "identifier"} : "identifier"), "_", (lexer.has("assign") ? {type: "assign"} : "assign"), "_", "expr"], "postprocess": 
         (data) => {
           return {
@@ -45,9 +46,9 @@ var grammar = {
           return [data[0]];
         }
               },
-    {"name": "arg_list", "symbols": ["arg_list", "_", (lexer.has("comma") ? {type: "comma"} : "comma"), "_", "expr"], "postprocess": 
+    {"name": "arg_list", "symbols": ["arg_list", "__", "expr"], "postprocess": 
         (data) => {
-          return [...data[0], data[4]];
+          return [...data[0], data[2]];
         }
               },
     {"name": "expr", "symbols": [(lexer.has("string") ? {type: "string"} : "string")], "postprocess": id},
@@ -56,7 +57,13 @@ var grammar = {
     {"name": "expr", "symbols": ["fun_call"], "postprocess": id},
     {"name": "_$ebnf$1", "symbols": []},
     {"name": "_$ebnf$1", "symbols": ["_$ebnf$1", (lexer.has("WS") ? {type: "WS"} : "WS")], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
-    {"name": "_", "symbols": ["_$ebnf$1"]},
+    {"name": "_", "symbols": ["_$ebnf$1"], "postprocess": 
+        (data) => {
+          return {
+            type: "empty_line",
+          }
+        }
+              },
     {"name": "__$ebnf$1", "symbols": [(lexer.has("WS") ? {type: "WS"} : "WS")]},
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", (lexer.has("WS") ? {type: "WS"} : "WS")], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"]}

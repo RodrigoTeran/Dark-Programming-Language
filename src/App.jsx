@@ -15,10 +15,12 @@ const App = () => {
 
   // Output
   const [codeOutput, setCodeOutput] = useState("");
+  const [codeOutputError, setCodeOutputError] = useState(false);
   return (
     <>
       <IndexNav
         setCodeOutput={setCodeOutput}
+        setCodeOutputError={setCodeOutputError}
         textAreaCodeRef={textAreaCodeRef}
       ></IndexNav>
       <div className="layout">
@@ -29,6 +31,7 @@ const App = () => {
         <Draggable consoleRef={consoleRef} codeRef={codeRef}></Draggable>
         <IndexConsole
           codeOutput={codeOutput}
+          codeOutputError={codeOutputError}
           consoleRef={consoleRef}
         ></IndexConsole>
       </div>
