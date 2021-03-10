@@ -36,7 +36,8 @@ function generateJsForStatementOrExpr(node) {
   if (node.type === "var_assign") {
     const varName =
       node.var_name.value === "var" ||
-      node.var_name.value === "result_code_dark_programming_language"
+      node.var_name.value === "result_code_dark_programming_language" ||
+      node.var_name.value === "const"
         ? `${node.var_name.value}_`
         : node.var_name.value;
     const jsExpr = generateJsForStatementOrExpr(node.value);
@@ -58,7 +59,8 @@ function generateJsForStatementOrExpr(node) {
   } else if (node.type === "identifier") {
     if (
       node.value === "var" ||
-      node.value === "result_code_dark_programming_language"
+      node.value === "result_code_dark_programming_language" ||
+      node.value === "const"
     ) {
       return `${node.value}_`;
     } else {
