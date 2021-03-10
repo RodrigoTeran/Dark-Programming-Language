@@ -7,7 +7,7 @@ const IntroductionDocumentation = () => {
       <h3>Introduction</h3>
       <div className="containerConsole__documentationContainer__info">
         <div>Welcome to DARK programming language</div>
-        <div>An useless programming language</div>
+        <div>A useless programming language</div>
         <br />
         <div>...</div>
         <br />
