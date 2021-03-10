@@ -38,12 +38,12 @@ const BuiltInFunctions = () => {
         </ul>
         <br />
         <br />
-        <div>"detailed" explanation of each one</div>
-        <ul>
-          <li>
-            {/* ------------------------------------ speak() ------------------------------------*/}
-            <div>speak()</div>
-            <br />
+        <div>"detailed" explanation of each one:</div>
+        <br/>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ speak() ------------------------------------*/}
+          <h3><span>speak()</span></h3>
+          <div className="containerConsole__documentationContainer__info">
             <div>
               The speak function is similar when you hit your little toe...
               everybody can hear you scream...
@@ -82,11 +82,12 @@ const BuiltInFunctions = () => {
               If you assign this funcion to a variable it is going to return
               nothing
             </div>
-          </li>
-          <li style={{ marginTop: "40px" }}>
-            {/* ------------------------------------ speakWith() ------------------------------------*/}
-            <div>speakWith()</div>
-            <br />
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ speakWith() ------------------------------------*/}
+          <h3><span>speakWith()</span></h3>
+          <div className="containerConsole__documentationContainer__info">
             <div>
               The speakWith function is similar to speak, but now you can
               specify the spacing between the parameters
@@ -111,11 +112,12 @@ const BuiltInFunctions = () => {
               If you assign this funcion to a variable it is going to return
               nothing
             </div>
-          </li>
-          <li style={{ marginTop: "40px" }}>
-            {/* ------------------------------------ add() ------------------------------------*/}
-            <div>add()</div>
-            <br />
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ add() ------------------------------------*/}
+          <h3><span>add()</span></h3>
+          <div className="containerConsole__documentationContainer__info">
             <div>
               This function believes in teamwork ... that's why it unifies all
               its parameters
@@ -154,10 +156,12 @@ const BuiltInFunctions = () => {
                 /# Expected output: Sum: 6421
               </span>
             </CodeSimulator>
-          </li>
-          <li style={{ marginTop: "40px" }}>
-            {/* ------------------------------------ dot() ------------------------------------*/}
-            <div>dot()</div>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ dot() ------------------------------------*/}
+          <h3><span>dot()</span></h3>
+          <div className="containerConsole__documentationContainer__info">
             <br />
             <div>
               This function is old school... it multiplies all its integers
@@ -199,8 +203,8 @@ const BuiltInFunctions = () => {
               <br />
               <span style={{ color: "#AAA" }}>/# Expected output: 18</span>
             </CodeSimulator>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

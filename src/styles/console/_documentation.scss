@@ -5,25 +5,45 @@
   color: var(--svg-color);
   background-color: transparent;
   overflow-y: scroll;
-  &__section {
+  &__section,
+  &__section__2 {
     position: relative;
+    h3 {
+      color: var(--text-color-body-2);
+      font-size: 1.2rem;
+      background-color: var(--background-color-body-2);
+
+      position: -webkit-sticky;
+      padding: 0 10px;
+      position: sticky;
+      height: 55px;
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__section {
+    h3 {
+      top: -1px;
+      z-index: 2;
+    }
+  }
+  &__section__2 {
+    margin: 0px -20px;
+    h3 {
+      top: 53px;
+      z-index: 1;
+      padding-left: 40px;
+      span {
+        display: list-item;
+        list-style-type: square;
+      }
+    }
   }
   &__info {
     padding: 20px 20px 30px 20px;
     div {
       line-height: 30px;
     }
-  }
-  h3 {
-    color: var(--text-color-body-2);
-    font-size: 1.2rem;
-    background-color: var(--background-color-body-2);
-
-    position: -webkit-sticky;
-    padding: 15px 10px;
-    position: sticky;
-    z-index: 1;
-    top: -1px;
   }
   ul {
     margin: 5px 0 0 0;

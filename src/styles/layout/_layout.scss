@@ -14,7 +14,7 @@
   cursor: ew-resize;
   transition: transform linear 0.1s;
   position: relative;
-  z-index: 2;
+  z-index: 10000;
 
   @media (hover: hover) and (pointer: fine) {
     &:hover {

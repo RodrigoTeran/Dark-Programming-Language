@@ -36,7 +36,7 @@
       &::after,
       &::before {
         position: absolute;
-        z-index: 3;
+        z-index: 10000;
         opacity: 0;
         visibility: hidden;
         transition: opacity linear 0.2s, 0.2s visibility linear 0s;
