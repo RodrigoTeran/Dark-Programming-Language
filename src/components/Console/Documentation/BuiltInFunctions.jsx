@@ -26,18 +26,22 @@ const BuiltInFunctions = () => {
           <br />
           <span style={{ color: "#AAA" }}>/# Expected output: Error</span>
         </CodeSimulator>
-        <div style={{ marginTop: "5px" }}>...is wrong...</div>
+        <br />
+        <div>...is wrong...</div>
         <br />
         <div>Here are our built-in functions:</div>
         <ul>
           <li>speak()</li>
           <li>speakWith()</li>
           <li>add()</li>
+          <li>dot()</li>
         </ul>
         <br />
         <br />
+        <div>"detailed" explanation of each one</div>
         <ul>
           <li>
+            {/* ------------------------------------ speak() ------------------------------------*/}
             <div>speak()</div>
             <br />
             <div>
@@ -80,6 +84,7 @@ const BuiltInFunctions = () => {
             </div>
           </li>
           <li style={{ marginTop: "40px" }}>
+            {/* ------------------------------------ speakWith() ------------------------------------*/}
             <div>speakWith()</div>
             <br />
             <div>
@@ -101,13 +106,14 @@ const BuiltInFunctions = () => {
               If you only pass one parameter it is not going to speak... this
               function needs more food...
             </div>
-            <br/>
+            <br />
             <div>
               If you assign this funcion to a variable it is going to return
               nothing
             </div>
           </li>
           <li style={{ marginTop: "40px" }}>
+            {/* ------------------------------------ add() ------------------------------------*/}
             <div>add()</div>
             <br />
             <div>
@@ -147,6 +153,51 @@ const BuiltInFunctions = () => {
               <span style={{ color: "#AAA" }}>
                 /# Expected output: Sum: 6421
               </span>
+            </CodeSimulator>
+          </li>
+          <li style={{ marginTop: "40px" }}>
+            {/* ------------------------------------ dot() ------------------------------------*/}
+            <div>dot()</div>
+            <br />
+            <div>
+              This function is old school... it multiplies all its integers
+              parameters and return the result
+            </div>
+            <div>
+              This function only multiplies integer values but you can pass
+              strings values as well
+            </div>
+            <CodeSimulator>
+              result = dot(1 2 3 "my string")
+              <br />
+              speak(result)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: 6</span>
+            </CodeSimulator>
+            <br />
+            <div>
+              It is very clever, it ignores all the non Integers values...{" "}
+            </div>
+            <br />
+            <div>
+              This can be useful to skip evaluating if your variables are
+              integers or strings...
+            </div>
+            <br />
+            <div>...you dont have time for that...</div>
+            <br />
+            <div>But...</div>
+            <div>
+              just as Javascript, when it is passed a string with integer
+              values, it catches up and also multiplies it with the rest of
+              integer parameters
+            </div>
+            <CodeSimulator>
+              result = dot("2" 3 "string" add(1 2))
+              <br />
+              speak(result)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: 18</span>
             </CodeSimulator>
           </li>
         </ul>

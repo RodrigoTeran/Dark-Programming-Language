@@ -1,5 +1,5 @@
 // Built in Functions
-import { speak, speakWith, add } from "./runtime";
+import { speak, speakWith, add, dot } from "./runtime";
 
 export function generateJsForStatements(statements) {
   if (typeof statements === "object") {
@@ -17,6 +17,7 @@ export function generateJsForStatements(statements) {
         ${speak()}
         ${speakWith()}
         ${add()}
+        ${dot()}
         ${theInstructions}
     
         return result_code_dark_programming_language;
@@ -37,7 +38,9 @@ function generateJsForStatementOrExpr(node) {
     const varName =
       node.var_name.value === "var" ||
       node.var_name.value === "result_code_dark_programming_language" ||
-      node.var_name.value === "const"
+      node.var_name.value === "const" ||
+      node.var_name.value === "result_code_dark_programming_language_parcial" ||
+      node.var_name.value === "result_code_dark_programming_language_last"
         ? `${node.var_name.value}_`
         : node.var_name.value;
     const jsExpr = generateJsForStatementOrExpr(node.value);
@@ -60,7 +63,9 @@ function generateJsForStatementOrExpr(node) {
     if (
       node.value === "var" ||
       node.value === "result_code_dark_programming_language" ||
-      node.value === "const"
+      node.value === "const" ||
+      node.value === "result_code_dark_programming_language_parcial" ||
+      node.value === "result_code_dark_programming_language_last"
     ) {
       return `${node.value}_`;
     } else {

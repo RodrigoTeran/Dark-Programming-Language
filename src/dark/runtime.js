@@ -17,3 +17,12 @@ export const add = () => {
   };`;
   return string;
 };
+
+export const dot = () => {
+  const string = `const dot = (...args) => {
+    result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
+
+    return result_code_dark_programming_language_parcial.reduce((a, b) => a * b)
+  };`;
+  return string;
+};
