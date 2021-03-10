@@ -3,7 +3,6 @@ import React from "react";
 
 // Functions
 import { codeToParse } from "../../dark/parse";
-import { generateJsForStatements } from "../../dark/generate";
 
 const IndexNav = ({ textAreaCodeRef, setCodeOutput, setCodeOutputError }) => {
   return (
@@ -13,14 +12,12 @@ const IndexNav = ({ textAreaCodeRef, setCodeOutput, setCodeOutputError }) => {
       </h1>
       <button
         onClick={() => {
-
-          const statements = codeToParse(textAreaCodeRef.current.value);
-          const js = generateJsForStatements(statements);
-          if (js[0] === "SUCCESS") {
-            setCodeOutput(js[1]);
+          const darkOutput = codeToParse(textAreaCodeRef.current.value);
+          if (darkOutput[0] === "SUCCESS") {
+            setCodeOutput(darkOutput[1]);
             setCodeOutputError(false);
           } else {
-            setCodeOutput(js[1]);
+            setCodeOutput(darkOutput[1]);
             setCodeOutputError(true);
           }
         }}
