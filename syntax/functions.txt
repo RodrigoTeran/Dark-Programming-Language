@@ -1,0 +1,8 @@
+// it is necessary the => return() function
+task -> variableFunction(parameter){
+
+
+  => return(parameter * 3)
+}
+
+result = variableFunction()

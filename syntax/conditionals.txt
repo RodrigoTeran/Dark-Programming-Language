@@ -1,0 +1,7 @@
+assuming -> variable == "hello" {
+
+} different assumption -> variable == "world" {
+
+} different {
+
+}

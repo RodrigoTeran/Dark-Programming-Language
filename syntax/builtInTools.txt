@@ -1,0 +1,71 @@
+// ------------------------------------------------------------------- GOD
+
+res = GOD.isInt(3)
+// win
+
+res = GOD.isInt("3")
+// win
+
+res = GOD.isInt("hi")
+// fail
+
+list = [1 2 3]
+GOD.lists.addItem(list 4)
+// 1 2 3 4
+
+GOD.lists.addItemIn(list 5 2)
+// 1 2 5 3 4
+
+GOD.lists.deleteItemsNamed(list 5)
+// 1 2 3 4
+
+GOD.lists.deleteItemIn(list 1)
+// 1 3 4
+
+
+// ------------------------------------------------------------------- speak()
+speak("3" 2 1 "hello world" [1, 2, 3])
+// 321hello world1,2,3
+
+speak("3 " 2 " " 1 " hello world " [1, 2, 3])
+// 3 2 1 hello world 1,2,3
+
+
+// ------------------------------------------------------------------- add() // +
+speak(add(1 2 3))
+// 6
+
+speak(add(1 "lol" 2 "5" 3 "xd"))
+// 11
+
+
+// ------------------------------------------------------------------- dot() // *
+speak(dot(1 2 3 4))
+// 24
+
+speak(dot(1 "lol" 2 "5" 3 "xd"))
+// 30
+
+
+// ------------------------------------------------------------------- discount() // -
+speak(discount(1 2 3 4))
+// -8
+
+speak(discount(1 "lol" 2 "5" 3 "xd"))
+// -9
+
+
+// ------------------------------------------------------------------- over() // /
+speak(over(12 4 3))
+// 1
+
+speak(over(12 "lol" 4 "3" "xd"))
+// 1
+
+
+// ------------------------------------------------------------------- concat()
+speak(concat("hello" "world")))
+// helloworld
+
+speak(concat("hello " "world")))
+// hello world

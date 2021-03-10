@@ -1,0 +1,17 @@
+// GOD.period.apocalypse() is like break()
+period -> variable == "xd" {
+
+  assuming -> "3" == "3" {
+    GOD.period.apocalypse()
+  }
+}
+
+from -> 1 to 10 with i {
+  speak(i)
+}
+
+list = [1 2 3 4 5]
+
+from -> list with i {
+  speak(i)
+}
