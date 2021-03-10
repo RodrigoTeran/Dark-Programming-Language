@@ -21,11 +21,11 @@
   button {
     background-color: var(--text-color-body-2);
     height: 80%;
-    width: 100px;
+    width: 200px;
     display: flex;
     justify-content: center;
     position: absolute;
-    left: calc(50% - 50px);
+    left: calc(50% - 100px);
     align-items: center;
     color: var(--svg-color);
     font-size: 1.2rem;

@@ -12,6 +12,11 @@ const Draggable = ({ consoleRef, codeRef }) => {
     left: codeRef,
     right: consoleRef,
   });
-  return <div ref={draggableRef} className="draggable"></div>;
+  return (
+    <>
+      <div ref={draggableRef} className="draggable">
+      </div>
+    </>
+  );
 };
 export default Draggable;
