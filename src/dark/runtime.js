@@ -13,7 +13,7 @@ export const speakWith = () => {
 
 export const add = () => {
   const string = `const add = (...args) => {
-    return args.reduce((a, b) => a + b, 0)
+    return args.reduce((a, b) => a + b)
   };`;
   return string;
 };

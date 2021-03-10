@@ -10,7 +10,7 @@ const BuiltInFunctions = () => {
       <h3>Built-in Functions</h3>
       <div className="containerConsole__documentationContainer__info">
         <div>DARK has already some useful built-in functions</div>
-        <div>So you cannot overwrite thos functions</div>
+        <div>So you cannot overwrite those functions</div>
         <br />
         <div>
           So if you want to name a function as one of our built-in functions, it
@@ -67,10 +67,10 @@ const BuiltInFunctions = () => {
             <CodeSimulator>
               variable = "monday"
               <br />
-              speak("hi to David" 3 "foo bar" variable)
+              speak(3 "bar" variable)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> hi to David, 3, foo bar, monday #/
+                /# Expected output: <br /> 3, bar, monday #/
               </span>
             </CodeSimulator>
             <br />
