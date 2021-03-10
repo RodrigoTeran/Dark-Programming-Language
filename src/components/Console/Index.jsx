@@ -5,6 +5,7 @@ import React from "react";
 import IntroductionDocumentation from "./Documentation/IntroductionDocumentation";
 import VariablesDocumentation from "./Documentation/VariablesDocumentation";
 import BuiltInFunctions from "./Documentation/BuiltInFunctions";
+import DataTypesDocumentation from "./Documentation/DataTypes";
 
 const IndexConsole = ({
   consoleRef,
@@ -37,6 +38,7 @@ const IndexConsole = ({
         <div className="containerConsole__documentationContainer">
           <IntroductionDocumentation></IntroductionDocumentation>
           <VariablesDocumentation></VariablesDocumentation>
+          <DataTypesDocumentation></DataTypesDocumentation>
           <BuiltInFunctions></BuiltInFunctions>
         </div>
       ) : (

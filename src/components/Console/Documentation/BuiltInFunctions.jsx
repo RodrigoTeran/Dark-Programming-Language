@@ -39,10 +39,12 @@ const BuiltInFunctions = () => {
         <br />
         <br />
         <div>"detailed" explanation of each one:</div>
-        <br/>
+        <br />
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ speak() ------------------------------------*/}
-          <h3><span>speak()</span></h3>
+          <h3>
+            <span>speak()</span>
+          </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
               The speak function is similar when you hit your little toe...
@@ -66,7 +68,7 @@ const BuiltInFunctions = () => {
             <br />
             <div>
               When it receives multiple parameters, it separates them with a
-              comma
+              comma and a space
             </div>
             <CodeSimulator>
               variable = "monday"
@@ -74,19 +76,18 @@ const BuiltInFunctions = () => {
               speak(3 "bar" variable)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> 3, bar, monday #/
+                /# Expected output: 3, bar, monday #/
               </span>
             </CodeSimulator>
             <br />
-            <div>
-              If you assign this funcion to a variable it is going to return
-              nothing
-            </div>
+            <div>If doesnt return any value when assigned to a variable</div>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ speakWith() ------------------------------------*/}
-          <h3><span>speakWith()</span></h3>
+          <h3>
+            <span>speakWith()</span>
+          </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
               The speakWith function is similar to speak, but now you can
@@ -108,15 +109,14 @@ const BuiltInFunctions = () => {
               function needs more food...
             </div>
             <br />
-            <div>
-              If you assign this funcion to a variable it is going to return
-              nothing
-            </div>
+            <div>If doesnt return any value when assigned to a variable</div>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ add() ------------------------------------*/}
-          <h3><span>add()</span></h3>
+          <h3>
+            <span>add()</span>
+          </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
               This function believes in teamwork ... that's why it unifies all
@@ -160,7 +160,9 @@ const BuiltInFunctions = () => {
         </div>
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ dot() ------------------------------------*/}
-          <h3><span>dot()</span></h3>
+          <h3>
+            <span>dot()</span>
+          </h3>
           <div className="containerConsole__documentationContainer__info">
             <br />
             <div>
@@ -192,7 +194,7 @@ const BuiltInFunctions = () => {
             <br />
             <div>But...</div>
             <div>
-              just as Javascript, when it is passed a string with integer
+              just as javascript, when it is passed a string with integer
               values, it catches up and also multiplies it with the rest of
               integer parameters
             </div>

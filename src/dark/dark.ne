@@ -63,11 +63,25 @@ arg_list
       %}
 
 
+list
+  -> %lbracket _ (arg_list _):? %rbracket 
+      {%
+        (data) => {
+          return {
+            type: "array",
+            arguments: data[2] ? data[2][0] : [],
+          };
+        }
+      %}
+
+
 expr
   -> %string         {% id %}
+  | %string2         {% id %}
   | %number          {% id %}
   | %identifier      {% id %}
   | fun_call         {% id %}
+  | list             {% id %}
     
 
 # Optional whitespace

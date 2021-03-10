@@ -57,6 +57,8 @@ function generateJsForStatementOrExpr(node) {
     return `${funName}(${argList})`;
   } else if (node.type === "string") {
     return node.value;
+  } else if (node.type === "string2") {
+    return node.value;
   } else if (node.type === "number") {
     return node.value;
   } else if (node.type === "identifier") {
@@ -71,6 +73,13 @@ function generateJsForStatementOrExpr(node) {
     } else {
       return node.value;
     }
+  } else if (node.type === "array") {
+    const argList = node.arguments
+      .map((arg) => {
+        return generateJsForStatementOrExpr(arg);
+      })
+      .join(", ");
+    return "[" + argList + "]";
   } else if (node.type === "empty_line") {
     return "";
   } else {

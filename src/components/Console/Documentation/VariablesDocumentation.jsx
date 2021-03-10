@@ -14,12 +14,19 @@ const VariablesDocumentation = () => {
           <li>Strings</li>
           <li>Integers</li>
           <li>Variables</li>
-          <li>Functions</li>
+          <li>
+            Functions{" "}
+            <span style={{ color: "#AAA", marginLeft: "10px" }}>
+              /# Just the result they throw #/
+            </span>
+          </li>
+          <li>Lists</li>
         </ul>
         <CodeSimulator>variableString = "hi"</CodeSimulator>
         <CodeSimulator>variableInteger = 42</CodeSimulator>
         <CodeSimulator>anotherVariable = variableInteger</CodeSimulator>
         <CodeSimulator>sum = add(1 2)</CodeSimulator>
+        <CodeSimulator>variableList = [1 2 3 4 5]</CodeSimulator>
       </div>
     </div>
   );

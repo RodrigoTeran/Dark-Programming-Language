@@ -6,8 +6,8 @@ const IntroductionDocumentation = () => {
     <div className="containerConsole__documentationContainer__section">
       <h3>Introduction</h3>
       <div className="containerConsole__documentationContainer__info">
-        <div>Welcome to DARK programming Language</div>
-        <div>An unuseful programming language</div>
+        <div>Welcome to DARK programming language</div>
+        <div>An useless programming language</div>
         <br />
         <div>...</div>
         <br />
@@ -19,9 +19,8 @@ const IntroductionDocumentation = () => {
         <div>
           DARK is a light-weight language based on python and javascript syntax.
         </div>
-        <div>It only supports functional programming</div>
         <br />
-        <div> - Last stable version: 0.0.1</div>
+        <div style={{ color: "#7889d3" }}> - Last stable version: 0.0.1</div>
       </div>
     </div>
   );

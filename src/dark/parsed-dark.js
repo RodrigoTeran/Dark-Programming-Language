@@ -88,9 +88,42 @@ var grammar = {
         return [...data[0], data[2]];
       },
     },
+    { name: "list$ebnf$1$subexpression$1", symbols: ["arg_list", "_"] },
+    {
+      name: "list$ebnf$1",
+      symbols: ["list$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "list$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "list",
+      symbols: [
+        lexer.has("lbracket") ? { type: "lbracket" } : "lbracket",
+        "_",
+        "list$ebnf$1",
+        lexer.has("rbracket") ? { type: "rbracket" } : "rbracket",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "array",
+          arguments: data[2] ? data[2][0] : [],
+        };
+      },
+    },
     {
       name: "expr",
       symbols: [lexer.has("string") ? { type: "string" } : "string"],
+      postprocess: id,
+    },
+    {
+      name: "expr",
+      symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
       postprocess: id,
     },
     {
@@ -106,6 +139,7 @@ var grammar = {
       postprocess: id,
     },
     { name: "expr", symbols: ["fun_call"], postprocess: id },
+    { name: "expr", symbols: ["list"], postprocess: id },
     { name: "_$ebnf$1", symbols: [] },
     {
       name: "_$ebnf$1",
