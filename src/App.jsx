@@ -16,6 +16,9 @@ const App = () => {
   // Output
   const [codeOutput, setCodeOutput] = useState("");
   const [codeOutputError, setCodeOutputError] = useState(false);
+
+  // Documentation
+  const [isDocumentation, setIsDocumentation] = useState(false);
   return (
     <>
       <IndexNav
@@ -33,6 +36,8 @@ const App = () => {
           codeOutput={codeOutput}
           codeOutputError={codeOutputError}
           consoleRef={consoleRef}
+          setIsDocumentation={setIsDocumentation}
+          isDocumentation={isDocumentation}
         ></IndexConsole>
       </div>
     </>

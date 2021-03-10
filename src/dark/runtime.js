@@ -13,8 +13,7 @@ export const speakWith = () => {
 
 export const add = () => {
   const string = `const add = (...args) => {
-    result_code_dark_programming_language_last = args.reduce((a, b) => a + b, 0)
-    result_code_dark_programming_language.push(result_code_dark_programming_language_last);
+    return args.reduce((a, b) => a + b, 0)
   };`;
   return string;
 };
