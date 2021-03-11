@@ -40,7 +40,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(variableString)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: hi</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
             </CodeSimulator>
             <br />
             <div>Without quotes inside:</div>
@@ -49,7 +49,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(variableString)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: "hi"</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: "hi" #/</span>
             </CodeSimulator>
           </div>
         </div>
@@ -100,7 +100,7 @@ const DataTypesDocumentation = () => {
               speak(1 2 3 4 5 6 7 8)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 1, 2, 3, 4, 5, 6, 7, 8
+                /# Expected output: 12345678 #/
               </span>
             </CodeSimulator>
             <br />
@@ -117,7 +117,7 @@ const DataTypesDocumentation = () => {
               speak(list1 list2 list3 list4)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 1,2, 3,4, 5,6, 7,8
+                /# Expected output: 1,2 3,4 5,6 7,8 #/
               </span>
             </CodeSimulator>
             <br />
@@ -129,16 +129,17 @@ const DataTypesDocumentation = () => {
 
             <div>
               in short the speak() function prints its parameters in the
-              console and separate
+              console
             </div>
-            <div>them with commas and a space</div>
             <br />
             <br />
             <div>
-              In the last code sample, the function separates its arguments, but it only has
-              4 arguments...
+              In the last code sample, the lists are printed with commas. 
             </div>
-            <div>thats why it doesnt separates the values of each list</div>
+            <br/>
+            <div>
+              That represents that they are lists
+            </div>
           </div>
         </div>
       </div>

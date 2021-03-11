@@ -1,5 +1,5 @@
 // Built in Functions
-import { speak, speakWith, add, dot } from "./runtime";
+import { speak, add, dot, concat, concatWith } from "./runtime";
 
 export function generateJsForStatements(statements) {
   if (typeof statements === "object") {
@@ -15,8 +15,9 @@ export function generateJsForStatements(statements) {
       var allCode = `
         var result_code_dark_programming_language = [];
         ${speak()}
-        ${speakWith()}
         ${add()}
+        ${concat()}
+        ${concatWith()}
         ${dot()}
         ${theInstructions}
     
@@ -40,7 +41,8 @@ function generateJsForStatementOrExpr(node) {
       node.var_name.value === "result_code_dark_programming_language" ||
       node.var_name.value === "const" ||
       node.var_name.value === "result_code_dark_programming_language_parcial" ||
-      node.var_name.value === "result_code_dark_programming_language_last"
+      node.var_name.value ===
+        "result_code_dark_programming_language_parcial_last"
         ? `${node.var_name.value}_`
         : node.var_name.value;
     const jsExpr = generateJsForStatementOrExpr(node.value);
@@ -67,7 +69,8 @@ function generateJsForStatementOrExpr(node) {
       node.value === "result_code_dark_programming_language" ||
       node.value === "const" ||
       node.value === "result_code_dark_programming_language_parcial" ||
-      node.value === "result_code_dark_programming_language_last"
+      node.value ===
+        "result_code_dark_programming_language_parcial_last"
     ) {
       return `${node.value}_`;
     } else {

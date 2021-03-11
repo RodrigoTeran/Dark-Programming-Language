@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 // Components
 import IntroductionDocumentation from "./Documentation/IntroductionDocumentation";
@@ -13,7 +13,18 @@ const IndexConsole = ({
   codeOutputError,
   setIsDocumentation,
   isDocumentation,
+  documentationScrollRef,
 }) => {
+  const documentationRef = useRef(null);
+  useEffect(()=>{
+    const element = documentationRef.current;
+    if(element){
+      element.scrollTop = documentationScrollRef.current;
+    }
+  }, [isDocumentation]);
+  const handleScroll = (e) => {
+    documentationScrollRef.current = e.target.scrollTop;
+  };
   return (
     <div ref={consoleRef} className="containerConsole">
       <div className="containerConsole__header">
@@ -35,7 +46,11 @@ const IndexConsole = ({
         </button>
       </div>
       {isDocumentation ? (
-        <div className="containerConsole__documentationContainer">
+        <div
+          className="containerConsole__documentationContainer"
+          onScroll={handleScroll}
+          ref={documentationRef}
+        >
           <IntroductionDocumentation></IntroductionDocumentation>
           <VariablesDocumentation></VariablesDocumentation>
           <DataTypesDocumentation></DataTypesDocumentation>

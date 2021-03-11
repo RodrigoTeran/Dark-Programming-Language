@@ -1,8 +1,10 @@
-// GOD.period.apocalypse() is like break()
+// destroy() is like break()
+
 period -> variable == "xd" {
 
   assuming -> "3" == "3" {
-    GOD.period.apocalypse()
+    
+    destroy()
   }
 }
 
@@ -14,4 +16,9 @@ list = [1 2 3 4 5]
 
 from -> list with i {
   speak(i)
+
+  assuming -> i == 3 {
+    
+    destroy()
+  }
 }

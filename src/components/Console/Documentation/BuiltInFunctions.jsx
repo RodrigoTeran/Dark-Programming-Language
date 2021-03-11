@@ -24,7 +24,7 @@ const BuiltInFunctions = () => {
           <br />
           {"}"}
           <br />
-          <span style={{ color: "#AAA" }}>/# Expected output: Error</span>
+          <span style={{ color: "#AAA" }}>/# Expected output: SyntaxError: Identifier 'speak' has already been declared #/</span>
         </CodeSimulator>
         <br />
         <div>...is wrong...</div>
@@ -32,7 +32,6 @@ const BuiltInFunctions = () => {
         <div>Here are our built-in functions:</div>
         <ul>
           <li>speak()</li>
-          <li>speakWith()</li>
           <li>add()</li>
           <li>dot()</li>
         </ul>
@@ -62,13 +61,12 @@ const BuiltInFunctions = () => {
               speak("hi to David")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: hi to David
+                /# Expected output: hi to David #/
               </span>
             </CodeSimulator>
             <br />
             <div>
-              When it receives multiple parameters, it separates them with a
-              comma and a space
+              When it receives multiple parameters, it doesnt separate them
             </div>
             <CodeSimulator>
               variable = "monday"
@@ -76,38 +74,9 @@ const BuiltInFunctions = () => {
               speak(3 "bar" variable)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 3, bar, monday #/
+                /# Expected output: 3barmonday #/
               </span>
             </CodeSimulator>
-            <br />
-            <div>If doesnt return any value when assigned to a variable</div>
-          </div>
-        </div>
-        <div className="containerConsole__documentationContainer__section__2">
-          {/* ------------------------------------ speakWith() ------------------------------------*/}
-          <h3>
-            <span>speakWith()</span>
-          </h3>
-          <div className="containerConsole__documentationContainer__info">
-            <div>
-              The speakWith function is similar to speak, but now you can
-              specify the spacing between the parameters
-            </div>
-            <div>
-              The last parameter is the spacing that they are going to follow
-            </div>
-            <CodeSimulator>
-              speakWith("hi" "to" "David" " - ")
-              <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: hi - to - David
-              </span>
-            </CodeSimulator>
-            <br />
-            <div>
-              If you only pass one parameter it is not going to speak... this
-              function needs more food...
-            </div>
             <br />
             <div>If doesnt return any value when assigned to a variable</div>
           </div>
@@ -126,34 +95,31 @@ const BuiltInFunctions = () => {
             <CodeSimulator>
               sum = add(1 2 3)
               <br />
-              speakWith("Sum:" sum " ")
+              speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 6</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 6 #/</span>
             </CodeSimulator>
             <br />
             <div>It returns the sum of the integers</div>
             <div>
-              but it still works when it is passed strings as parameters
+              but it still works when it is passed integers values as strings
             </div>
             <CodeSimulator>
               sum = add(1 2 3 "4")
               <br />
-              speakWith("Sum:" sum " ")
+              speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 64</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 10 #/</span>
             </CodeSimulator>
             <br />
-            <div>but once a string is added in the parameters list,</div>
-            <div>
-              the rest of the parameters will be taken as strings as well...
-            </div>
+            <div>it is very clever, so it ignores the parameters that are just strings withour integer values,</div>
             <CodeSimulator>
-              sum = add(1 2 3 "4" 2 1)
+              sum = add(1 2 "3" "hi" 2 1)
               <br />
-              speakWith("Sum:" sum " ")
+              speak("Sum: " sum)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 6421
+                /# Expected output: Sum: 9 #/
               </span>
             </CodeSimulator>
           </div>
@@ -178,11 +144,11 @@ const BuiltInFunctions = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 6</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 6 #/</span>
             </CodeSimulator>
             <br />
             <div>
-              It is very clever, it ignores all the non Integers values...{" "}
+              It is very clever, it ignores all the non integer values...{" "}
             </div>
             <br />
             <div>
@@ -203,7 +169,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 18</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 18 #/</span>
             </CodeSimulator>
           </div>
         </div>

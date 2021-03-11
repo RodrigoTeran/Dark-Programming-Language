@@ -1,0 +1,3 @@
+and  // equal to &&
+or  // equal to ||
+not  // equal to !

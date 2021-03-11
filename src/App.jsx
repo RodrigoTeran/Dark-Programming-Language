@@ -13,6 +13,8 @@ const App = () => {
   const textAreaCodeRef = useRef(null);
   const consoleRef = useRef(null);
 
+  const documentationScrollRef = useRef(0);
+
   // Output
   const [codeOutput, setCodeOutput] = useState("");
   const [codeOutputError, setCodeOutputError] = useState(false);
@@ -38,6 +40,7 @@ const App = () => {
           consoleRef={consoleRef}
           setIsDocumentation={setIsDocumentation}
           isDocumentation={isDocumentation}
+          documentationScrollRef={documentationScrollRef}
         ></IndexConsole>
       </div>
     </>
