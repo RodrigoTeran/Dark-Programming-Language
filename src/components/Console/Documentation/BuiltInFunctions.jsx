@@ -13,8 +13,8 @@ const BuiltInFunctions = () => {
         <div>So you cannot overwrite those functions</div>
         <br />
         <div>
-          if you want to name a function as one of our built-in functions, it
-          is going to throw an error
+          if you want to name a function as one of our built-in functions, it is
+          going to throw an error
         </div>
         <div>For example:</div>
         <CodeSimulator>
@@ -24,7 +24,10 @@ const BuiltInFunctions = () => {
           <br />
           {"}"}
           <br />
-          <span style={{ color: "#AAA" }}>/# Expected output: SyntaxError: Identifier 'speak' has already been declared #/</span>
+          <span style={{ color: "#AAA" }}>
+            /# Expected output: SyntaxError: Identifier 'speak' has already been
+            declared #/
+          </span>
         </CodeSimulator>
         <br />
         <div>...is wrong...</div>
@@ -34,6 +37,8 @@ const BuiltInFunctions = () => {
           <li>speak()</li>
           <li>add()</li>
           <li>dot()</li>
+          <li>concat()</li>
+          <li>concatWith()</li>
         </ul>
         <br />
         <br />
@@ -46,10 +51,12 @@ const BuiltInFunctions = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              The speak function is similar to print() in python and console.log() in
-              javascript
+              The speak function is similar to print() in python and
+              console.log() in javascript
             </div>
-            <div>...know everybody can read the value of your parameters...</div>
+            <div>
+              ...know everybody can read the value of your parameters...
+            </div>
             <br />
             <div>It only shows the parameters it receives on the console.</div>
             <CodeSimulator>
@@ -73,7 +80,7 @@ const BuiltInFunctions = () => {
               </span>
             </CodeSimulator>
             <br />
-            <div>If doesnt return any value when assigned to a variable</div>
+            <div>If doesn't return any value when assigned to a variable</div>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
@@ -83,8 +90,8 @@ const BuiltInFunctions = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              This function believes in teamwork ... that's why it adds all
-              its parameters
+              This function believes in teamwork ... that's why it adds all its
+              parameters
             </div>
             <div>This function is better used with integer values</div>
             <CodeSimulator>
@@ -92,7 +99,9 @@ const BuiltInFunctions = () => {
               <br />
               speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 6 #/</span>
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: Sum: 6 #/
+              </span>
             </CodeSimulator>
             <br />
             <div>It returns the sum of the integers</div>
@@ -104,18 +113,21 @@ const BuiltInFunctions = () => {
               <br />
               speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 10 #/</span>
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: Sum: 10 #/
+              </span>
             </CodeSimulator>
             <br />
-            <div>it is very clever, so it ignores the parameters that are just strings without integer values,</div>
+            <div>
+              it is very clever, so it ignores the parameters that are just
+              strings without integer values,
+            </div>
             <CodeSimulator>
               result = add("2" 3 "string" add(1 2) [3])
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: 11 #/
-              </span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 11 #/</span>
             </CodeSimulator>
           </div>
         </div>
@@ -165,6 +177,68 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>/# Expected output: 18 #/</span>
+            </CodeSimulator>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ concat() ------------------------------------*/}
+          <h3>
+            <span>concat()</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <br />
+            <div>
+              The concat function unifies all its parameters and throw the result, it doesn't matter
+              if they are strings, lists, etc.
+            </div>
+            <CodeSimulator>
+              result = concat("2" 3 "string" add(1 2))
+              <br />
+              speak(result)
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: 23string3 #/
+              </span>
+            </CodeSimulator>
+            <br />
+            <div>it doesn't add space between those values</div>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ concatWith() ------------------------------------*/}
+          <h3>
+            <span>concatWith()</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <br />
+            <div>It does the same as concat()</div>
+            <div>
+              But the last parameter represents the spacing between the values
+            </div>
+            <CodeSimulator>
+              result = concatWith(1 2 3 4 5 " - ")
+              <br />
+              speak(result)
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: 1 - 2 - 3 - 4 - 5 #/
+              </span>
+            </CodeSimulator>
+            <br />
+            <br />
+            <div>
+              if you only pass one or no parameters, it is going to throw an
+              error
+            </div>
+            <CodeSimulator>
+              result = concatWith(1)
+              <br />
+              speak(result)
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: <br /> TypeError: Reduce of empty array with
+                no initial value #/
+              </span>
             </CodeSimulator>
           </div>
         </div>
