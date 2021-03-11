@@ -25,7 +25,7 @@ const DataTypesDocumentation = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>The strings are very easy to use</div>
-            <div>This strings are just as any other programming language</div>
+            <div>These strings are just as any other programming language</div>
             <CodeSimulator>variableString = "hi"</CodeSimulator>
             <br />
             <CodeSimulator>variableString = 'hi'</CodeSimulator>
@@ -34,7 +34,7 @@ const DataTypesDocumentation = () => {
             <br />
             <div>So you can see the quotes in the console as you want:</div>
             <br />
-            <div>With quotes inside:</div>
+            <div>Without quotes inside:</div>
             <CodeSimulator>
               variableString = 'hi'
               <br />
@@ -43,7 +43,7 @@ const DataTypesDocumentation = () => {
               <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
             </CodeSimulator>
             <br />
-            <div>Without quotes inside:</div>
+            <div>With quotes inside:</div>
             <CodeSimulator>
               variableString = '"hi"'
               <br />
@@ -65,7 +65,7 @@ const DataTypesDocumentation = () => {
             </div>
             <CodeSimulator>variableInteger = 42</CodeSimulator>
             <br />
-            <CodeSimulator>variableString = "42"</CodeSimulator>
+            <CodeSimulator>variableInteger = "42"</CodeSimulator>
             <br />
             <div>yes... "42" is also an integer</div>
             <br />
@@ -74,6 +74,14 @@ const DataTypesDocumentation = () => {
               integer
             </div>
             <div>then it is taken as integer</div>
+            <br/>
+            <CodeSimulator>variableInteger = [42]</CodeSimulator>
+            <br />
+            <div>
+              also lists with only one integer element, are taken as
+              integers... if they have more than one element, then they are no
+              more taken as integers
+            </div>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
@@ -95,7 +103,9 @@ const DataTypesDocumentation = () => {
             <div>but careful...</div>
             <div>this is not the same as the parameters of a function</div>
             <br />
-            <div>This is a bunch of parameters... no need to add the brackets</div>
+            <div>
+              This is a bunch of parameters... no need to add the brackets
+            </div>
             <CodeSimulator>
               speak(1 2 3 4 5 6 7 8)
               <br />
@@ -114,7 +124,7 @@ const DataTypesDocumentation = () => {
               <br />
               list4 = [7 8]
               <br />
-              speak(list1 list2 list3 list4)
+              speak(list1 " " list2 " " list3 " " list4)
               <br />
               <span style={{ color: "#AAA" }}>
                 /# Expected output: 1,2 3,4 5,6 7,8 #/
@@ -128,18 +138,11 @@ const DataTypesDocumentation = () => {
             <br />
 
             <div>
-              in short the speak() function prints its parameters in the
-              console
+              in short the speak() function prints its parameters in the console
             </div>
             <br />
             <br />
-            <div>
-              In the last code sample, the lists are printed with commas. 
-            </div>
-            <br/>
-            <div>
-              That represents that they are lists
-            </div>
+            <div>Lists are always printed with commas</div>
           </div>
         </div>
       </div>

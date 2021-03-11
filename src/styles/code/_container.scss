@@ -37,6 +37,7 @@
       width: calc(100% - 40px);
       height: 100%;
       textarea {
+        tab-size: 4ch;
         overflow-y: scroll;
         width: 100%;
 

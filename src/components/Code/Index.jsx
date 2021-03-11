@@ -20,6 +20,21 @@ const IndexCode = ({ codeRef, textAreaCodeRef }) => {
     tranformRows(e);
     setNumberOfRows(newArrayRows);
   };
+  const onTextAreaKeyDown = (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      var start = textAreaCodeRef.current.selectionStart;
+      var end = textAreaCodeRef.current.selectionEnd;
+      var new_ =
+        e.target.value.substring(0, start) +
+        "\t" +
+        e.target.value.substring(end);
+      textAreaCodeRef.current.value = new_;
+
+      textAreaCodeRef.current.selectionEnd = start + 1;
+    }
+  };
+
   return (
     <div className="containerCode" ref={codeRef}>
       <h2>DARK CODE</h2>
@@ -32,6 +47,7 @@ const IndexCode = ({ codeRef, textAreaCodeRef }) => {
         <div className="containerCode__code__text">
           <textarea
             wrap="off"
+            onKeyDown={onTextAreaKeyDown}
             onScroll={tranformRows}
             onChange={onTextAreaChange}
             spellCheck="false"

@@ -13,7 +13,7 @@ const BuiltInFunctions = () => {
         <div>So you cannot overwrite those functions</div>
         <br />
         <div>
-          So if you want to name a function as one of our built-in functions, it
+          if you want to name a function as one of our built-in functions, it
           is going to throw an error
         </div>
         <div>For example:</div>
@@ -46,17 +46,12 @@ const BuiltInFunctions = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              The speak function is similar when you hit your little toe...
-              everybody can hear you scream...
-            </div>
-            <div>in this case, everybody can read your statement</div>
-            <br />
-            <div>
-              speak is equivalent to print() in python and console.log() in
+              The speak function is similar to print() in python and console.log() in
               javascript
             </div>
+            <div>...know everybody can read the value of your parameters...</div>
             <br />
-            <div>It only shows in the console the parameters it receives.</div>
+            <div>It only shows the parameters it receives on the console.</div>
             <CodeSimulator>
               speak("hi to David")
               <br />
@@ -66,7 +61,7 @@ const BuiltInFunctions = () => {
             </CodeSimulator>
             <br />
             <div>
-              When it receives multiple parameters, it doesnt separate them
+              When it receives multiple parameters, it doesn't separate them
             </div>
             <CodeSimulator>
               variable = "monday"
@@ -88,7 +83,7 @@ const BuiltInFunctions = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              This function believes in teamwork ... that's why it unifies all
+              This function believes in teamwork ... that's why it adds all
               its parameters
             </div>
             <div>This function is better used with integer values</div>
@@ -112,14 +107,14 @@ const BuiltInFunctions = () => {
               <span style={{ color: "#AAA" }}>/# Expected output: Sum: 10 #/</span>
             </CodeSimulator>
             <br />
-            <div>it is very clever, so it ignores the parameters that are just strings withour integer values,</div>
+            <div>it is very clever, so it ignores the parameters that are just strings without integer values,</div>
             <CodeSimulator>
-              sum = add(1 2 "3" "hi" 2 1)
+              result = add("2" 3 "string" add(1 2) [3])
               <br />
-              speak("Sum: " sum)
+              speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 9 #/
+                /# Expected output: 11 #/
               </span>
             </CodeSimulator>
           </div>
@@ -148,7 +143,7 @@ const BuiltInFunctions = () => {
             </CodeSimulator>
             <br />
             <div>
-              It is very clever, it ignores all the non integer values...{" "}
+              as the add function, it ignores all the non integer values...{" "}
             </div>
             <br />
             <div>
