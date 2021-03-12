@@ -14,6 +14,7 @@ const DataTypesDocumentation = () => {
           <li>Strings</li>
           <li>Numbers</li>
           <li>Lists</li>
+          <li>Boolean</li>
         </ul>
         <div
           className="containerConsole__documentationContainer__section__2"
@@ -60,7 +61,8 @@ const DataTypesDocumentation = () => {
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              The numbers are... integers and float numbers... that means that they can 
+              The numbers are... integers and float numbers... that means that
+              they can
             </div>
             <div>
               be numbers which include both rational and irrational numbers.
@@ -72,22 +74,24 @@ const DataTypesDocumentation = () => {
             <div>yes... "-0.2" is also a number</div>
             <br />
             <div>
-              DARK has an automatic string parser, and if the string value is a number
+              DARK has an automatic string parser, and if the string value is a
+              number
             </div>
             <div>then it is taken as a number</div>
-            <br/>
+            <br />
             <CodeSimulator>variableNumber = [42]</CodeSimulator>
             <br />
             <div>
-              also lists with only one number element, are taken as
-              numbers... if they have more than one element, then they are no
-              more taken as numbers
+              also lists with only one number element, are taken as numbers...
+              if they have more than one element, then they are no more taken as
+              numbers
             </div>
-            <br/>
+            <br />
             <div>
-              If you need to write decimal numbers, it is necessary to include the zero before the point
+              If you need to write decimal numbers, it is necessary to include
+              the zero before the point
             </div>
-            <br/>
+            <br />
             <CodeSimulator>variableNumber = 0.34</CodeSimulator>
           </div>
         </div>
@@ -150,6 +154,66 @@ const DataTypesDocumentation = () => {
             <br />
             <br />
             <div>Lists are always printed with commas</div>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ Boolean ------------------------------------*/}
+          <h3>
+            <span>Boolean</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <div>
+              The DARK boolean values are represented with the keywords WIN and
+              FAIL
+            </div>
+            <div>WIN is for true and FAIL is for false</div>
+            <CodeSimulator>
+              variableBoolean = WIN
+              <br />
+              speak(variableBoolean)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: true #/</span>
+            </CodeSimulator>
+            <br />
+            <CodeSimulator>
+              variableBoolean = FAIL
+              <br />
+              speak(variableBoolean)
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: false #/
+              </span>
+            </CodeSimulator>
+            <br />
+            <br />
+            <div>
+              you can name your variables as true or false... this keywords
+              doesn't
+            </div>
+            <div>exist in DARK</div>
+            <CodeSimulator>
+              false = "hi"
+              <br />
+              speak(false)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
+            </CodeSimulator>
+            <br />
+            <div>but you cannot name your vaiables WIN or FAIL</div>
+            <CodeSimulator>
+              WIN = "hello there"
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: Syntax error: unhandled expression #/
+              </span>
+            </CodeSimulator>
+            <br />
+            <div>Boolean variables are not treated as numbers</div>
+            <CodeSimulator>
+              speak(add(1 2 3 WIN FAIL))
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: 6 #/</span>
+            </CodeSimulator>
           </div>
         </div>
       </div>

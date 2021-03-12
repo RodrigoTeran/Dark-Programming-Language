@@ -27,6 +27,7 @@ export function generateJsForStatements(statements) {
     
         return result_code_dark_programming_language;
       `;
+
       var F = new Function(allCode);
       const result = F();
       return ["SUCCESS", result.join("\n")];
@@ -46,7 +47,9 @@ function generateJsForStatementOrExpr(node) {
       node.var_name.value === "const" ||
       node.var_name.value === "result_code_dark_programming_language_parcial" ||
       node.var_name.value ===
-        "result_code_dark_programming_language_parcial_last"
+        "result_code_dark_programming_language_parcial_last" ||
+      node.var_name.value === "true" ||
+      node.var_name.value === "false"
         ? `${node.var_name.value}_`
         : node.var_name.value;
     const jsExpr = generateJsForStatementOrExpr(node.value);
@@ -67,14 +70,19 @@ function generateJsForStatementOrExpr(node) {
     return node.value;
   } else if (node.type === "number") {
     return node.value;
+  } else if (node.type === "true") {
+    return node.value;
+  } else if (node.type === "false") {
+    return node.value;
   } else if (node.type === "identifier") {
     if (
       node.value === "var" ||
       node.value === "result_code_dark_programming_language" ||
       node.value === "const" ||
       node.value === "result_code_dark_programming_language_parcial" ||
-      node.value ===
-        "result_code_dark_programming_language_parcial_last"
+      node.value === "result_code_dark_programming_language_parcial_last" ||
+      node.value === "true" ||
+      node.value === "false"
     ) {
       return `${node.value}_`;
     } else {

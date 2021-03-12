@@ -35,6 +35,7 @@ var grammar = {
         lexer.has("assign") ? { type: "assign" } : "assign",
         "_",
         "expr",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -65,6 +66,7 @@ var grammar = {
         "_",
         "fun_call$ebnf$1",
         lexer.has("rparen") ? { type: "rparen" } : "rparen",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -125,6 +127,26 @@ var grammar = {
       name: "expr",
       symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
       postprocess: id,
+    },
+    {
+      name: "expr",
+      symbols: [lexer.has("true") ? { type: "true" } : true],
+      postprocess: (data) => {
+        return {
+          type: "true",
+          value: true,
+        };
+      },
+    },
+    {
+      name: "expr",
+      symbols: [lexer.has("false") ? { type: "false" } : false],
+      postprocess: (data) => {
+        return {
+          type: "false",
+          value: false,
+        };
+      },
     },
     {
       name: "expr",

@@ -21,12 +21,14 @@ const VariablesDocumentation = () => {
             </span>
           </li>
           <li>Lists</li>
+          <li>Boolean</li>
         </ul>
         <CodeSimulator>variableString = "hi"</CodeSimulator>
         <CodeSimulator>variableNumber = -4.2</CodeSimulator>
         <CodeSimulator>anotherVariable = variableNumber</CodeSimulator>
         <CodeSimulator>sum = add(1 2)</CodeSimulator>
         <CodeSimulator>variableList = [1 2 3 4 5]</CodeSimulator>
+        <CodeSimulator>variableBoolean = WIN</CodeSimulator>
       </div>
     </div>
   );

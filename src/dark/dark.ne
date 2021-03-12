@@ -25,7 +25,7 @@ statement
   | _               {% id %}
 
 var_assign
-  -> %identifier _ %assign _ expr
+  -> %identifier _ %assign _ expr _
       {%
         (data) => {
           return {
@@ -37,7 +37,7 @@ var_assign
       %}
 
 fun_call
-  -> %identifier %lparen _ (arg_list _):? %rparen
+  -> %identifier %lparen _ (arg_list _):? %rparen _
       {%
         (data) => {
           return {
@@ -78,6 +78,24 @@ list
 expr
   -> %string         {% id %}
   | %string2         {% id %}
+  | %true            
+      {%
+        (data) => {
+          return {
+            type: "true",
+            value: true
+          };
+        }
+      %}
+  | %false
+      {%
+        (data) => {
+          return {
+            type: "false",
+            value: false
+          };
+        }
+      %}
   | %number          {% id %}
   | %identifier      {% id %}
   | fun_call         {% id %}
