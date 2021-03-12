@@ -93,7 +93,7 @@ const BuiltInFunctions = () => {
               This function believes in teamwork ... that's why it adds all its
               parameters
             </div>
-            <div>This function is better used with integer values</div>
+            <div>This function is better used with numbers</div>
             <CodeSimulator>
               sum = add(1 2 3)
               <br />
@@ -104,9 +104,9 @@ const BuiltInFunctions = () => {
               </span>
             </CodeSimulator>
             <br />
-            <div>It returns the sum of the integers</div>
+            <div>It returns the sum of the numbers</div>
             <div>
-              but it still works when it is passed integers values as strings
+              it still works when it is passed numbers values as strings
             </div>
             <CodeSimulator>
               sum = add(1 2 3 "4")
@@ -120,7 +120,7 @@ const BuiltInFunctions = () => {
             <br />
             <div>
               it is very clever, so it ignores the parameters that are just
-              strings without integer values,
+              strings without number values,
             </div>
             <CodeSimulator>
               result = add("2" 3 "string" add(1 2) [3])
@@ -139,11 +139,11 @@ const BuiltInFunctions = () => {
           <div className="containerConsole__documentationContainer__info">
             <br />
             <div>
-              This function is old school... it multiplies all its integers
+              This function is old school... it multiplies all its number
               parameters and return the result
             </div>
             <div>
-              This function only multiplies integer values but you can pass
+              This function only multiplies number values but you can pass
               strings values as well
             </div>
             <CodeSimulator>
@@ -155,21 +155,21 @@ const BuiltInFunctions = () => {
             </CodeSimulator>
             <br />
             <div>
-              as the add function, it ignores all the non integer values...{" "}
+              as the add function, it ignores all the non number values...{" "}
             </div>
             <br />
             <div>
               This can be useful to skip evaluating if your variables are
-              integers or strings...
+              numbers or strings...
             </div>
             <br />
             <div>...you dont have time for that...</div>
             <br />
             <div>But...</div>
             <div>
-              just as javascript, when it is passed a string with integer
-              values, it catches up and also multiplies it with the rest of
-              integer parameters
+              just as javascript, when it is passed a string with number a
+              value, it catches up and also multiplies it with the rest of
+              number parameters
             </div>
             <CodeSimulator>
               result = dot("2" 3 "string" add(1 2))

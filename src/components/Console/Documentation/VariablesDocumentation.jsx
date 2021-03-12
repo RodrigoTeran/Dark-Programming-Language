@@ -12,8 +12,8 @@ const VariablesDocumentation = () => {
         <div>The DARK variables can only be assigned to:</div>
         <ul>
           <li>Strings</li>
-          <li>Integers</li>
-          <li>Variables</li>
+          <li>Numbers</li>
+          <li>Other variables</li>
           <li>
             Functions{" "}
             <span style={{ color: "#AAA", marginLeft: "10px" }}>
@@ -23,8 +23,8 @@ const VariablesDocumentation = () => {
           <li>Lists</li>
         </ul>
         <CodeSimulator>variableString = "hi"</CodeSimulator>
-        <CodeSimulator>variableInteger = 42</CodeSimulator>
-        <CodeSimulator>anotherVariable = variableInteger</CodeSimulator>
+        <CodeSimulator>variableNumber = -4.2</CodeSimulator>
+        <CodeSimulator>anotherVariable = variableNumber</CodeSimulator>
         <CodeSimulator>sum = add(1 2)</CodeSimulator>
         <CodeSimulator>variableList = [1 2 3 4 5]</CodeSimulator>
       </div>

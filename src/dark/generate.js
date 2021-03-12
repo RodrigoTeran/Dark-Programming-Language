@@ -14,6 +14,10 @@ export function generateJsForStatements(statements) {
       // Add functionality
       var allCode = `
         var result_code_dark_programming_language = [];
+        Number.prototype.round = function(places) {
+          return +(Math.round(this + "e+" + places)  + "e-" + places);
+        }
+
         ${speak()}
         ${add()}
         ${concat()}

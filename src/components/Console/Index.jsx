@@ -1,5 +1,5 @@
 // React
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
 // Components
 import IntroductionDocumentation from "./Documentation/IntroductionDocumentation";
@@ -16,7 +16,7 @@ const IndexConsole = ({
   documentationScrollRef,
 }) => {
   const documentationRef = useRef(null);
-  useEffect(()=>{
+  useLayoutEffect(()=>{
     const element = documentationRef.current;
     if(element){
       element.scrollTop = documentationScrollRef.current;

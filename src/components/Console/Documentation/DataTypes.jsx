@@ -12,7 +12,7 @@ const DataTypesDocumentation = () => {
         <div>DARK has very useful data types:</div>
         <ul>
           <li>Strings</li>
-          <li>Integers</li>
+          <li>Numbers</li>
           <li>Lists</li>
         </ul>
         <div
@@ -54,34 +54,41 @@ const DataTypesDocumentation = () => {
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
-          {/* ------------------------------------ Integers ------------------------------------*/}
+          {/* ------------------------------------ Numbers ------------------------------------*/}
           <h3>
-            <span>Integers</span>
+            <span>Numbers</span>
           </h3>
           <div className="containerConsole__documentationContainer__info">
             <div>
-              The integers are... integer numbers... a very descriptive name
-              right?
+              The numbers are... integers and float numbers... that means that they can 
             </div>
-            <CodeSimulator>variableInteger = 42</CodeSimulator>
+            <div>
+              be numbers which include both rational and irrational numbers.
+            </div>
+            <CodeSimulator>variableNumber = 4.2</CodeSimulator>
             <br />
-            <CodeSimulator>variableInteger = "42"</CodeSimulator>
+            <CodeSimulator>variableNumber = "-0.2"</CodeSimulator>
             <br />
-            <div>yes... "42" is also an integer</div>
+            <div>yes... "-0.2" is also a number</div>
             <br />
             <div>
-              DARK has an automatic string parser, and if the string value is an
-              integer
+              DARK has an automatic string parser, and if the string value is a number
             </div>
-            <div>then it is taken as integer</div>
+            <div>then it is taken as a number</div>
             <br/>
-            <CodeSimulator>variableInteger = [42]</CodeSimulator>
+            <CodeSimulator>variableNumber = [42]</CodeSimulator>
             <br />
             <div>
-              also lists with only one integer element, are taken as
-              integers... if they have more than one element, then they are no
-              more taken as integers
+              also lists with only one number element, are taken as
+              numbers... if they have more than one element, then they are no
+              more taken as numbers
             </div>
+            <br/>
+            <div>
+              If you need to write decimal numbers, it is necessary to include the zero before the point
+            </div>
+            <br/>
+            <CodeSimulator>variableNumber = 0.34</CodeSimulator>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
