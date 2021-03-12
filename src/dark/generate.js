@@ -14,6 +14,23 @@ export function generateJsForStatements(statements) {
       // Add functionality
       var allCode = `
         var result_code_dark_programming_language = [];
+
+        Array.prototype.get_item = function (item) {
+          if(item < 0){
+              return this[this.length + item];
+          } else {
+              return this[item];
+          }
+        };
+
+        Number.prototype.get_item = function (item) {
+          throw new Error(this + " is not a list")
+        };
+
+        String.prototype.get_item = function (item) {
+          throw new Error('"' + this + '"' + " is not a list")
+        };
+
         Number.prototype.round = function(places) {
           return +(Math.round(this + "e+" + places)  + "e-" + places);
         }
@@ -72,6 +89,14 @@ function generateJsForStatementOrExpr(node) {
     return node.value;
   } else if (node.type === "true") {
     return node.value;
+  } else if (node.type === "array_item") {
+    if (!node.item.value) {
+      throw new Error(
+        `Need to specify an item position to ${node.array_name.value}`
+      );
+    } else {
+      return `${node.array_name.value}.get_item(${node.item.value})`;
+    }
   } else if (node.type === "false") {
     return node.value;
   } else if (node.type === "identifier") {

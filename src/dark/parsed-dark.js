@@ -119,6 +119,45 @@ var grammar = {
       },
     },
     {
+      name: "item_list$ebnf$1$subexpression$1",
+      symbols: [lexer.has("number") ? { type: "number" } : "number"],
+    },
+    {
+      name: "item_list$ebnf$1$subexpression$1",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
+    },
+    {
+      name: "item_list$ebnf$1",
+      symbols: ["item_list$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "item_list$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "item_list",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+        lexer.has("lbracket") ? { type: "lbracket" } : "lbracket",
+        "_",
+        "item_list$ebnf$1",
+        lexer.has("rbracket") ? { type: "rbracket" } : "rbracket",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "array_item",
+          array_name: data[0],
+          item: data[3] ? data[3][0] : [],
+        };
+      },
+    },
+    {
       name: "expr",
       symbols: [lexer.has("string") ? { type: "string" } : "string"],
       postprocess: id,
@@ -128,6 +167,7 @@ var grammar = {
       symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
       postprocess: id,
     },
+    { name: "expr", symbols: ["item_list"], postprocess: id },
     {
       name: "expr",
       symbols: [lexer.has("true") ? { type: "true" } : true],

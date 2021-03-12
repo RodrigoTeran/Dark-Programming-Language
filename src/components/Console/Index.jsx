@@ -6,6 +6,7 @@ import IntroductionDocumentation from "./Documentation/IntroductionDocumentation
 import VariablesDocumentation from "./Documentation/VariablesDocumentation";
 import BuiltInFunctions from "./Documentation/BuiltInFunctions";
 import DataTypesDocumentation from "./Documentation/DataTypes";
+import ListsMethods from "./Documentation/ListsMethods";
 
 const IndexConsole = ({
   consoleRef,
@@ -54,6 +55,7 @@ const IndexConsole = ({
           <IntroductionDocumentation></IntroductionDocumentation>
           <VariablesDocumentation></VariablesDocumentation>
           <DataTypesDocumentation></DataTypesDocumentation>
+          <ListsMethods></ListsMethods>
           <BuiltInFunctions></BuiltInFunctions>
         </div>
       ) : (

@@ -64,7 +64,7 @@ arg_list
 
 
 list
-  -> %lbracket _ (arg_list _):? %rbracket 
+  -> %lbracket _ (arg_list _):? %rbracket
       {%
         (data) => {
           return {
@@ -75,9 +75,24 @@ list
       %}
 
 
+
+item_list
+  -> %identifier %lbracket _ (%number | %identifier):? %rbracket
+      {%
+        (data) => {
+          return {
+            type: "array_item",
+            array_name: data[0],
+            item: data[3] ? data[3][0] : [],
+          };
+        }
+      %}
+
+
 expr
   -> %string         {% id %}
   | %string2         {% id %}
+  | item_list        {% id %}
   | %true            
       {%
         (data) => {
