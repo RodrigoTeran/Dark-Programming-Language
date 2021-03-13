@@ -19,6 +19,7 @@ export const grammar = {
 
   // Functions
   function: "task",
+  inputFunction: "ask",
 
   // Variables
   identifier: /[a-zA-Z][a-zA-Z_0-9]*/,

@@ -20,9 +20,23 @@ statements
 
 
 statement
-  -> var_assign     {% id %}
+  -> input_assign   {% id %}
   | fun_call        {% id %}
+  | var_assign      {% id %}
   | _               {% id %}
+
+
+input_assign
+  -> %identifier _ %assign _ input_fun _
+      {%
+        (data) => {
+          return {
+            type: "input_assign",
+            var_name: data[0],
+            value: data[4],
+          }
+        }
+      %}
 
 var_assign
   -> %identifier _ %assign _ expr _
@@ -32,6 +46,18 @@ var_assign
             type: "var_assign",
             var_name: data[0],
             value: data[4],
+          }
+        }
+      %}
+
+
+input_fun
+  -> %inputFunction %lparen _ (%string | %string2 _):? %rparen _
+      {%
+        (data) => {
+          return {
+            type: "input_fun",
+            input: data[3] ? data[3][0] : "",
           }
         }
       %}

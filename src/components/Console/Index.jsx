@@ -10,22 +10,39 @@ import ListsMethods from "./Documentation/ListsMethods";
 
 const IndexConsole = ({
   consoleRef,
-  codeOutput,
   codeOutputError,
+  setCodeOutputError,
   setIsDocumentation,
   isDocumentation,
   documentationScrollRef,
+
+  isConsoleEditable,
+  setIsConsoleEditable,
+  consoleTextAreaRef,
+  defaultTextAreaConsole,
 }) => {
   const documentationRef = useRef(null);
-  useLayoutEffect(()=>{
+  useLayoutEffect(() => {
     const element = documentationRef.current;
-    if(element){
+    if (element) {
       element.scrollTop = documentationScrollRef.current;
     }
   }, [isDocumentation]);
   const handleScroll = (e) => {
     documentationScrollRef.current = e.target.scrollTop;
   };
+
+  const checkOnTextAreaKeyDow = () => {
+    var textarea = consoleTextAreaRef.current;
+    var default_ = defaultTextAreaConsole.current;
+    var valueText = textarea.value;
+
+    var section = valueText.substring(0, default_.length);
+    if (section !== default_) {
+      textarea.value = defaultTextAreaConsole.current;
+    }
+  };
+
   return (
     <div ref={consoleRef} className="containerConsole">
       <div className="containerConsole__header">
@@ -60,13 +77,32 @@ const IndexConsole = ({
         </div>
       ) : (
         <textarea
+          ref={consoleTextAreaRef}
           style={{
-            color: codeOutputError ? "#F00" : "#FFF",
+            color:
+              codeOutputError === 0
+                ? "#FFF"
+                : codeOutputError === 1
+                ? "#F00"
+                : "#0F0",
           }}
-          readOnly
-          value={codeOutput}
+          readOnly={!isConsoleEditable}
+          onChange={checkOnTextAreaKeyDow}
         ></textarea>
       )}
+      {isConsoleEditable && !isDocumentation ? (
+        <div
+          className={`containerConsole__pause`}
+          onClick={() => {
+            setIsConsoleEditable(false);
+            setCodeOutputError(0);
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z" />
+          </svg>
+        </div>
+      ) : null}
     </div>
   );
 };

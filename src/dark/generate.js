@@ -1,58 +1,85 @@
 // Built in Functions
 import { speak, add, dot, concat, concatWith } from "./runtime";
 
-export function generateJsForStatements(statements) {
+export function generateJsForStatements(statements, index, firstInstructions) {
   if (typeof statements === "object") {
     const lines = [];
 
     try {
-      for (let statement of statements) {
+      var isASKED = false;
+      var variableName = undefined;
+      var indexForBreaked = undefined;
+
+      for (var i = index; i < statements.length; i++) {
+        let statement = statements[i];
         const line = generateJsForStatementOrExpr(statement);
-        lines.push(line);
+
+        if (Array.isArray(line)) {
+          // [variableName, variableValue]
+          // mandar line[0] y el i
+          lines.push(`speak(${line[1]})`);
+          isASKED = true;
+          variableName = line[0];
+          indexForBreaked = i;
+          break;
+        } else {
+          lines.push(line);
+        }
       }
       var theInstructions = lines.join("\n").toString();
       // Add functionality
       var allCode = `
-        var result_code_dark_programming_language = [];
-
-        Array.prototype.get_item = function (item) {
-          if(item < 0){
-              return this[this.length + item];
-          } else {
-              return this[item];
+          var result_code_dark_programming_language = [];
+  
+          Array.prototype.get_item = function (item) {
+            if(item < 0){
+                return this[this.length + item];
+            } else {
+                return this[item];
+            }
+          };
+  
+          Number.prototype.get_item = function (item) {
+            throw new Error(this + " is not a list")
+          };
+  
+          String.prototype.get_item = function (item) {
+            throw new Error('"' + this + '"' + " is not a list")
+          };
+  
+          Number.prototype.round = function(places) {
+            return +(Math.round(this + "e+" + places)  + "e-" + places);
           }
-        };
-
-        Number.prototype.get_item = function (item) {
-          throw new Error(this + " is not a list")
-        };
-
-        String.prototype.get_item = function (item) {
-          throw new Error('"' + this + '"' + " is not a list")
-        };
-
-        Number.prototype.round = function(places) {
-          return +(Math.round(this + "e+" + places)  + "e-" + places);
-        }
-
-        ${speak()}
-        ${add()}
-        ${concat()}
-        ${concatWith()}
-        ${dot()}
-        ${theInstructions}
-    
-        return result_code_dark_programming_language;
-      `;
+  
+          ${speak()}
+          ${add()}
+          ${concat()}
+          ${concatWith()}
+          ${dot()}
+          ${firstInstructions}
+          ${theInstructions}
+      
+          return result_code_dark_programming_language;
+        `;
 
       var F = new Function(allCode);
       const result = F();
+
+      if (isASKED) {
+        return [
+          "ASKED",
+          result.join("\n"),
+          variableName,
+          indexForBreaked,
+          firstInstructions + "\n" + theInstructions,
+        ];
+      }
       return ["SUCCESS", result.join("\n")];
     } catch (error) {
-      return ["ERROR", error];
+      return ["ERROR", error.toString()];
     }
   } else {
-    return ["ERROR", statements];
+    return ["ERROR", statements.toString()];
   }
 }
 
@@ -122,6 +149,11 @@ function generateJsForStatementOrExpr(node) {
     return "[" + argList + "]";
   } else if (node.type === "empty_line") {
     return "";
+  } else if (node.type === "input_assign") {
+    var variableName = node.var_name.value;
+    var variableValue = node.value.input.value;
+
+    return [variableName, variableValue];
   } else {
     throw new Error(`Unhandled AST node type ${node.type}`);
   }

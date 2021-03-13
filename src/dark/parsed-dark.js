@@ -24,9 +24,28 @@ var grammar = {
         return [...data[0], data[2]];
       },
     },
-    { name: "statement", symbols: ["var_assign"], postprocess: id },
+    { name: "statement", symbols: ["input_assign"], postprocess: id },
     { name: "statement", symbols: ["fun_call"], postprocess: id },
+    { name: "statement", symbols: ["var_assign"], postprocess: id },
     { name: "statement", symbols: ["_"], postprocess: id },
+    {
+      name: "input_assign",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+        "_",
+        lexer.has("assign") ? { type: "assign" } : "assign",
+        "_",
+        "input_fun",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "input_assign",
+          var_name: data[0],
+          value: data[4],
+        };
+      },
+    },
     {
       name: "var_assign",
       symbols: [
@@ -42,6 +61,45 @@ var grammar = {
           type: "var_assign",
           var_name: data[0],
           value: data[4],
+        };
+      },
+    },
+    {
+      name: "input_fun$ebnf$1$subexpression$1",
+      symbols: [lexer.has("string") ? { type: "string" } : "string"],
+    },
+    {
+      name: "input_fun$ebnf$1$subexpression$1",
+      symbols: [lexer.has("string2") ? { type: "string2" } : "string2", "_"],
+    },
+    {
+      name: "input_fun$ebnf$1",
+      symbols: ["input_fun$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "input_fun$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "input_fun",
+      symbols: [
+        lexer.has("inputFunction")
+          ? { type: "inputFunction" }
+          : "inputFunction",
+        lexer.has("lparen") ? { type: "lparen" } : "lparen",
+        "_",
+        "input_fun$ebnf$1",
+        lexer.has("rparen") ? { type: "rparen" } : "rparen",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "input_fun",
+          input: data[3] ? data[3][0] : "",
         };
       },
     },

@@ -1,7 +1,7 @@
 // React
 import React, { useState, useRef } from "react";
 
-const IndexCode = ({ codeRef, textAreaCodeRef }) => {
+const IndexCode = ({ codeRef, textAreaCodeRef, isConsoleEditable }) => {
   // Hooks
   const [numberOfRows, setNumberOfRows] = useState([1]);
   const rowsRef = useRef(null);
@@ -52,6 +52,7 @@ const IndexCode = ({ codeRef, textAreaCodeRef }) => {
             onChange={onTextAreaChange}
             spellCheck="false"
             ref={textAreaCodeRef}
+            readOnly={isConsoleEditable}
           ></textarea>
         </div>
       </div>

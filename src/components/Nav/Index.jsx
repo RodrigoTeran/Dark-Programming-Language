@@ -1,10 +1,88 @@
 // React
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 // Functions
 import { codeToParse } from "../../dark/parse";
 
-const IndexNav = ({ textAreaCodeRef, setCodeOutput, setCodeOutputError }) => {
+const IndexNav = ({
+  textAreaCodeRef,
+  setCodeOutputError,
+  setIsConsoleEditable,
+  consoleTextAreaRef,
+  defaultTextAreaConsole,
+}) => {
+  // Event Listener
+  useEffect(() => {
+    const textarea = consoleTextAreaRef.current;
+    textarea.addEventListener("keydown", handleInput);
+    return () => {
+      textarea.removeEventListener("keydown", handleInput);
+    };
+  }, []);
+  // Handle Input User
+  const handleInput = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setIsConsoleEditable(false);
+      var textarea = consoleTextAreaRef.current;
+      var default_ = defaultTextAreaConsole.current;
+      var valueText = textarea.value;
+      var newSection = valueText.substring(default_.length);
+      var arrayFirstInstructions = firstInstructions.current.split("\n");
+      var lastOne = arrayFirstInstructions.pop();
+      lastOne = lastOne.substring(0, lastOne.length - 2);
+      arrayFirstInstructions.push(`${lastOne}${newSection}")`);
+      arrayFirstInstructions = arrayFirstInstructions.join("\n").toString();
+      firstInstructions.current = arrayFirstInstructions;
+      firstInstructions.current =
+        firstInstructions.current +
+        "\n" +
+        `var ${askedVariableName.current} = "${newSection}"`;
+      askFunction();
+    }
+  };
+
+  // Refs
+  const startingIndex = useRef(0);
+  const firstInstructions = useRef("");
+  const askedVariableName = useRef("");
+
+  const askFunction = () => {
+    const darkOutput = codeToParse(
+      textAreaCodeRef.current.value,
+      startingIndex.current,
+      firstInstructions.current
+    );
+
+    const arrangeValues = () => {
+      var textarea_ = consoleTextAreaRef.current;
+      textarea_.value = darkOutput[1];
+      defaultTextAreaConsole.current = textarea_.value;
+    };
+
+    if (darkOutput[0] === "SUCCESS") {
+      arrangeValues();
+      setCodeOutputError(0);
+    } else if (darkOutput[0] === "ERROR") {
+      var textarea_ = consoleTextAreaRef.current;
+      var darkCodeOutput_ = darkOutput[1];
+      if (textarea_.value === "") {
+        textarea_.value = darkCodeOutput_;
+      } else {
+        textarea_.value = textarea_.value + "\n" + darkCodeOutput_;
+      }
+      defaultTextAreaConsole.current = textarea_.value;
+      setCodeOutputError(1);
+    } else if (darkOutput[0] === "ASKED") {
+      arrangeValues();
+      setCodeOutputError(2);
+      // return ["ASKED", result.join("\n"), variableName, indexForBreaked, theInstructions];
+      setIsConsoleEditable(true);
+      startingIndex.current = darkOutput[3] + 1;
+      firstInstructions.current = darkOutput[4];
+      askedVariableName.current = darkOutput[2];
+    }
+  };
   return (
     <nav className="navLayout">
       <h1>
@@ -12,14 +90,14 @@ const IndexNav = ({ textAreaCodeRef, setCodeOutput, setCodeOutputError }) => {
       </h1>
       <button
         onClick={() => {
-          const darkOutput = codeToParse(textAreaCodeRef.current.value);
-          if (darkOutput[0] === "SUCCESS") {
-            setCodeOutput(darkOutput[1]);
-            setCodeOutputError(false);
-          } else {
-            setCodeOutput(darkOutput[1]);
-            setCodeOutputError(true);
-          }
+          var textarea = consoleTextAreaRef.current;
+          textarea.value = "";
+          defaultTextAreaConsole.current = "";
+          setCodeOutputError(0);
+          startingIndex.current = 0;
+          firstInstructions.current = "";
+          askedVariableName.current = "";
+          askFunction();
         }}
       >
         <div>RUN</div>

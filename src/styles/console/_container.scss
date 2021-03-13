@@ -4,6 +4,69 @@
   height: calc(100vh - 50px);
   background-color: var(--background-color-body);
   overflow: hidden;
+  position: relative;
+  &__pause {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 1;
+    top: 55px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    svg {
+      fill: var(--svg-color);
+      width: 25px;
+      height: 25px;
+    }
+    &::after,
+    &::before {
+      position: absolute;
+      z-index: 10000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity linear 0.2s, 0.2s visibility linear 0s;
+    }
+    &::after {
+      content: "Stop";
+      bottom: -2px;
+      left: -135px;
+      // left: -140px;
+      background-color: var(--svg-color);
+      width: 120px;
+      height: 30px;
+      color: var(--background-color-body-2);
+      border-radius: 5px 0px 0px 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    &::before {
+      content: "";
+      bottom: -1px;
+      left: -15px;
+      background-color: transparent;
+      width: 0px;
+      height: 0px;
+      border-top: 14px solid transparent;
+      border-right: 10px solid transparent;
+      border-left: 10px solid var(--svg-color);
+      border-bottom: 14px solid transparent;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        &::before,
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
   &__header {
     background-color: var(--background-color-body-2);
     padding: 10px;
@@ -43,12 +106,13 @@
       }
       &::after {
         content: "Documentation";
-        bottom: -45px;
-        left: -92.5px;
+        bottom: -2px;
+        left: -140px;
         background-color: var(--svg-color);
         width: 120px;
         height: 30px;
-        border-radius: 5px;
+        color: var(--background-color-body-2);
+        border-radius: 5px 0px 0px 5px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,15 +121,15 @@
       }
       &::before {
         content: "";
-        bottom: -15px;
-        left: 5px;
+        bottom: -1px;
+        left: -20px;
         background-color: transparent;
         width: 0px;
         height: 0px;
-        border-top: 10px solid transparent;
-        border-left: 7.5px solid transparent;
-        border-right: 7.5px solid transparent;
-        border-bottom: 10px solid var(--svg-color);
+        border-top: 14px solid transparent;
+        border-right: 10px solid transparent;
+        border-left: 10px solid var(--svg-color);
+        border-bottom: 14px solid transparent;
       }
       @media (hover: hover) and (pointer: fine) {
         &:hover {

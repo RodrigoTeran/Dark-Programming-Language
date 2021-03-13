@@ -16,31 +16,42 @@ const App = () => {
   const documentationScrollRef = useRef(0);
 
   // Output
-  const [codeOutput, setCodeOutput] = useState("");
-  const [codeOutputError, setCodeOutputError] = useState(false);
+  const [codeOutputError, setCodeOutputError] = useState(0);
 
   // Documentation
   const [isDocumentation, setIsDocumentation] = useState(false);
+
+  // Console
+  const [isConsoleEditable, setIsConsoleEditable] = useState(false);
+  const consoleTextAreaRef = useRef(null);
+  const defaultTextAreaConsole = useRef("");
   return (
     <>
       <IndexNav
-        setCodeOutput={setCodeOutput}
         setCodeOutputError={setCodeOutputError}
         textAreaCodeRef={textAreaCodeRef}
+        setIsConsoleEditable={setIsConsoleEditable}
+        consoleTextAreaRef={consoleTextAreaRef}
+        defaultTextAreaConsole={defaultTextAreaConsole}
       ></IndexNav>
       <div className="layout">
         <IndexCode
           codeRef={codeRef}
           textAreaCodeRef={textAreaCodeRef}
+          isConsoleEditable={isConsoleEditable}
         ></IndexCode>
         <Draggable consoleRef={consoleRef} codeRef={codeRef}></Draggable>
         <IndexConsole
-          codeOutput={codeOutput}
           codeOutputError={codeOutputError}
           consoleRef={consoleRef}
           setIsDocumentation={setIsDocumentation}
           isDocumentation={isDocumentation}
           documentationScrollRef={documentationScrollRef}
+          isConsoleEditable={isConsoleEditable}
+          setIsConsoleEditable={setIsConsoleEditable}
+          consoleTextAreaRef={consoleTextAreaRef}
+          defaultTextAreaConsole={defaultTextAreaConsole}
+          setCodeOutputError={setCodeOutputError}
         ></IndexConsole>
       </div>
     </>
