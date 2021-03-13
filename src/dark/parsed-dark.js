@@ -70,7 +70,15 @@ var grammar = {
     },
     {
       name: "input_fun$ebnf$1$subexpression$1",
-      symbols: [lexer.has("string2") ? { type: "string2" } : "string2", "_"],
+      symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
+    },
+    {
+      name: "input_fun$ebnf$1$subexpression$1",
+      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
+    },
+    {
+      name: "input_fun$ebnf$1$subexpression$1",
+      symbols: [lexer.has("number") ? { type: "number" } : "number", "_"],
     },
     {
       name: "input_fun$ebnf$1",
@@ -87,9 +95,7 @@ var grammar = {
     {
       name: "input_fun",
       symbols: [
-        lexer.has("inputFunction")
-          ? { type: "inputFunction" }
-          : "inputFunction",
+        { literal: "ask" },
         lexer.has("lparen") ? { type: "lparen" } : "lparen",
         "_",
         "input_fun$ebnf$1",
@@ -182,9 +188,7 @@ var grammar = {
     },
     {
       name: "item_list$ebnf$1$subexpression$1",
-      symbols: [
-        lexer.has("identifier") ? { type: "identifier" } : "identifier",
-      ],
+      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
     },
     {
       name: "item_list$ebnf$1",
@@ -228,7 +232,7 @@ var grammar = {
     { name: "expr", symbols: ["item_list"], postprocess: id },
     {
       name: "expr",
-      symbols: [lexer.has("true") ? { type: "true" } : true],
+      symbols: [{ literal: "WIN" }],
       postprocess: (data) => {
         return {
           type: "true",
@@ -238,7 +242,7 @@ var grammar = {
     },
     {
       name: "expr",
-      symbols: [lexer.has("false") ? { type: "false" } : false],
+      symbols: [{ literal: "FAIL" }],
       postprocess: (data) => {
         return {
           type: "false",
@@ -253,9 +257,7 @@ var grammar = {
     },
     {
       name: "expr",
-      symbols: [
-        lexer.has("identifier") ? { type: "identifier" } : "identifier",
-      ],
+      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
       postprocess: id,
     },
     { name: "expr", symbols: ["fun_call"], postprocess: id },

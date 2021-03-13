@@ -16,8 +16,6 @@ export function generateJsForStatements(statements, index, firstInstructions) {
         const line = generateJsForStatementOrExpr(statement);
 
         if (Array.isArray(line)) {
-          // [variableName, variableValue]
-          // mandar line[0] y el i
           lines.push(`speak(${line[1]})`);
           isASKED = true;
           variableName = line[0];
@@ -63,9 +61,6 @@ export function generateJsForStatements(statements, index, firstInstructions) {
       
           return result_code_dark_programming_language;
         `;
-      // console.log(allCode)
-
-
       var F = new Function(allCode);
       const result = F();
 
@@ -157,6 +152,9 @@ function generateJsForStatementOrExpr(node) {
   } else if (node.type === "input_assign") {
     var variableName = node.var_name.value;
     var variableValue = node.value.input.value;
+    if(!isNaN(variableValue)){
+      variableValue = `"${variableValue}"`;
+    }
 
     return [variableName, variableValue];
   } else {

@@ -52,7 +52,7 @@ var_assign
 
 
 input_fun
-  -> %inputFunction %lparen _ (%string | %string2 _):? %rparen _
+  -> "ask" %lparen _ (%string | %string2 | %identifier | %number _):? %rparen _
       {%
         (data) => {
           return {
@@ -119,7 +119,7 @@ expr
   -> %string         {% id %}
   | %string2         {% id %}
   | item_list        {% id %}
-  | %true            
+  | "WIN"
       {%
         (data) => {
           return {
@@ -128,7 +128,7 @@ expr
           };
         }
       %}
-  | %false
+  | "FAIL"
       {%
         (data) => {
           return {

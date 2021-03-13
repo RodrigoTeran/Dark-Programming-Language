@@ -13,14 +13,6 @@ export const grammar = {
   lbracket: "[",
   rbracket: "]",
 
-  // Boolean Values
-  true: "WIN",
-  false: "FAIL",
-
-  // Functions
-  function: "task",
-  inputFunction: "ask",
-
   // Variables
   identifier: /[a-zA-Z][a-zA-Z_0-9]*/,
 

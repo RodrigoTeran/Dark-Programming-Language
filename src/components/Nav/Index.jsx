@@ -36,12 +36,18 @@ const IndexNav = ({
       arrayFirstInstructions.pop();
       var varSpeakAnterior = variableInSpeak.current;
       var whatComilla = varSpeakAnterior.substring(0, 1);
-      varSpeakAnterior = varSpeakAnterior.substring(
-        1,
-        varSpeakAnterior.length - 1
-      );
-      var insideSpeak = `${whatComilla}${varSpeakAnterior}${newSection}${whatComilla}`;
-      insideSpeak = insideSpeak.toString();
+      var insideSpeak = ``;
+
+      if (whatComilla !== "'" && whatComilla !== '"') {
+        insideSpeak = `${varSpeakAnterior}, "${newSection}"`;
+      } else {
+        varSpeakAnterior = varSpeakAnterior.substring(
+          1,
+          varSpeakAnterior.length - 1
+        );
+        insideSpeak = `${whatComilla}${varSpeakAnterior}${newSection}${whatComilla}`;
+        insideSpeak = insideSpeak.toString();
+      }
       arrayFirstInstructions.push(`speak(${insideSpeak})`);
       arrayFirstInstructions = arrayFirstInstructions.join("\n").toString();
       firstInstructions.current = arrayFirstInstructions;

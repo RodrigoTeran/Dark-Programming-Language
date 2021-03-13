@@ -49,8 +49,6 @@ const IndexConsole = ({
     }
   };
 
-
-
   return (
     <div ref={consoleRef} className="containerConsole">
       <div className="containerConsole__header">
@@ -97,6 +95,7 @@ const IndexConsole = ({
           readOnly={!isConsoleEditable}
           onChange={checkOnTextAreaKeyDow}
           onKeyDown={checkNoQuotes}
+          spellCheck="false"
         ></textarea>
       )}
       {isConsoleEditable && !isDocumentation ? (
