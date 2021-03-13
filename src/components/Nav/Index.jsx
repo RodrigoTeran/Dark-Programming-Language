@@ -10,15 +10,19 @@ const IndexNav = ({
   setIsConsoleEditable,
   consoleTextAreaRef,
   defaultTextAreaConsole,
+  isDocumentation,
 }) => {
   // Event Listener
   useEffect(() => {
     const textarea = consoleTextAreaRef.current;
-    textarea.addEventListener("keydown", handleInput);
-    return () => {
-      textarea.removeEventListener("keydown", handleInput);
-    };
-  }, []);
+    try {
+      textarea.value = defaultTextAreaConsole.current;
+      textarea.addEventListener("keydown", handleInput);
+      return () => {
+        textarea.removeEventListener("keydown", handleInput);
+      };
+    } catch {}
+  }, [isDocumentation]);
   // Handle Input User
   const handleInput = (e) => {
     if (e.key === "Enter") {
@@ -29,9 +33,16 @@ const IndexNav = ({
       var valueText = textarea.value;
       var newSection = valueText.substring(default_.length);
       var arrayFirstInstructions = firstInstructions.current.split("\n");
-      var lastOne = arrayFirstInstructions.pop();
-      lastOne = lastOne.substring(0, lastOne.length - 2);
-      arrayFirstInstructions.push(`${lastOne}${newSection}")`);
+      arrayFirstInstructions.pop();
+      var varSpeakAnterior = variableInSpeak.current;
+      var whatComilla = varSpeakAnterior.substring(0, 1);
+      varSpeakAnterior = varSpeakAnterior.substring(
+        1,
+        varSpeakAnterior.length - 1
+      );
+      var insideSpeak = `${whatComilla}${varSpeakAnterior}${newSection}${whatComilla}`;
+      insideSpeak = insideSpeak.toString();
+      arrayFirstInstructions.push(`speak(${insideSpeak})`);
       arrayFirstInstructions = arrayFirstInstructions.join("\n").toString();
       firstInstructions.current = arrayFirstInstructions;
       firstInstructions.current =
@@ -46,6 +57,7 @@ const IndexNav = ({
   const startingIndex = useRef(0);
   const firstInstructions = useRef("");
   const askedVariableName = useRef("");
+  const variableInSpeak = useRef("");
 
   const askFunction = () => {
     const darkOutput = codeToParse(
@@ -81,6 +93,7 @@ const IndexNav = ({
       startingIndex.current = darkOutput[3] + 1;
       firstInstructions.current = darkOutput[4];
       askedVariableName.current = darkOutput[2];
+      variableInSpeak.current = darkOutput[5];
     }
   };
   return (
@@ -96,6 +109,7 @@ const IndexNav = ({
           setCodeOutputError(0);
           startingIndex.current = 0;
           firstInstructions.current = "";
+          variableInSpeak.current = "";
           askedVariableName.current = "";
           askFunction();
         }}

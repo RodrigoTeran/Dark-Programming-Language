@@ -8,6 +8,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
     try {
       var isASKED = false;
       var variableName = undefined;
+      var variableInSpeak = undefined;
       var indexForBreaked = undefined;
 
       for (var i = index; i < statements.length; i++) {
@@ -20,6 +21,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           lines.push(`speak(${line[1]})`);
           isASKED = true;
           variableName = line[0];
+          variableInSpeak = line[1];
           indexForBreaked = i;
           break;
         } else {
@@ -61,6 +63,8 @@ export function generateJsForStatements(statements, index, firstInstructions) {
       
           return result_code_dark_programming_language;
         `;
+      // console.log(allCode)
+
 
       var F = new Function(allCode);
       const result = F();
@@ -72,6 +76,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           variableName,
           indexForBreaked,
           firstInstructions + "\n" + theInstructions,
+          variableInSpeak
         ];
       }
       return ["SUCCESS", result.join("\n")];

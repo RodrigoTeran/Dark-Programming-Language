@@ -33,6 +33,7 @@ const App = () => {
         setIsConsoleEditable={setIsConsoleEditable}
         consoleTextAreaRef={consoleTextAreaRef}
         defaultTextAreaConsole={defaultTextAreaConsole}
+        isDocumentation={isDocumentation}
       ></IndexNav>
       <div className="layout">
         <IndexCode
