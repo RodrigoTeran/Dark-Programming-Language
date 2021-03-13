@@ -43,6 +43,14 @@ const IndexConsole = ({
     }
   };
 
+  const checkNoQuotes = (e) => {
+    if(e.key === "'" || e.key === '"') {
+      e.preventDefault();
+    }
+  };
+
+
+
   return (
     <div ref={consoleRef} className="containerConsole">
       <div className="containerConsole__header">
@@ -88,6 +96,7 @@ const IndexConsole = ({
           }}
           readOnly={!isConsoleEditable}
           onChange={checkOnTextAreaKeyDow}
+          onKeyDown={checkNoQuotes}
         ></textarea>
       )}
       {isConsoleEditable && !isDocumentation ? (
