@@ -199,13 +199,13 @@ const DataTypesDocumentation = () => {
               <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
             </CodeSimulator>
             <br />
-            <div>but you cannot name your vaiables WIN or FAIL</div>
+            <div>but you cannot overwrite the value of WIN and FAIL</div>
             <CodeSimulator>
               WIN = "hello there"
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: Syntax error: unhandled expression #/
-              </span>
+              speak(WIN)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: true #/</span>
             </CodeSimulator>
             <br />
             <div>Boolean variables are not treated as numbers</div>

@@ -18,7 +18,7 @@ const BuiltInFunctions = () => {
         </div>
         <div>For example:</div>
         <CodeSimulator>
-          task speak(){" {"}
+          task -&#62; speak(){" {"}
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;...stuff
           <br />
@@ -39,6 +39,7 @@ const BuiltInFunctions = () => {
           <li>dot()</li>
           <li>concat()</li>
           <li>concatWith()</li>
+          <li>ask()</li>
         </ul>
         <br />
         <br />
@@ -188,8 +189,8 @@ const BuiltInFunctions = () => {
           <div className="containerConsole__documentationContainer__info">
             <br />
             <div>
-              The concat function unifies all its parameters and throw the result, it doesn't matter
-              if they are strings, lists, etc.
+              The concat function unifies all its parameters and throw the
+              result, it doesn't matter if they are strings, lists, etc.
             </div>
             <CodeSimulator>
               result = concat("2" 3 "string" add(1 2))
@@ -238,6 +239,70 @@ const BuiltInFunctions = () => {
               <span style={{ color: "#AAA" }}>
                 /# Expected output: <br /> TypeError: Reduce of empty array with
                 no initial value #/
+              </span>
+            </CodeSimulator>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ ask() ------------------------------------*/}
+          <h3>
+            <span>ask()</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <div>The ask function is like an input() in python</div>
+            <div>...it allows the user to pass data from the console...</div>
+            <br />
+            <div>
+              When this function is compiled it stops the compilation process,
+              and it waits for
+            </div>
+            <div>
+              the user to type the data... when the user hits ENTER then it
+              starts to complie again
+            </div>
+            <br />
+            <div>
+              When the console is color green you can type data, and you cannot
+              modify the code.
+            </div>
+            <br />
+            <br />
+            <div>
+              Is required that the ask function is assigned to a variable to
+              keep reference of what the user had typed
+            </div>
+            <CodeSimulator>
+              result = ask("Name: ")
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: 'IN CONSOLE' Name: #/
+              </span>
+            </CodeSimulator>
+            <br />
+            <div>
+              In the console it will appear a stop button, to stop the code from
+              running
+            </div>
+            <br />
+            <br />
+            <div>
+              You can only pass 1 parameter to the ask function, and it only can
+              be a string, number or a variable.
+            </div>
+            <br />
+            <div>
+              If you need to pass a list, boolean, etc. Then you will need to
+              pass a variable with that value.
+            </div>
+            <CodeSimulator>
+              name = "Name: "
+              <br />
+              name_answer = ask(name)
+              <br />
+              speak(name_answer ", good afternoon")
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: 'IN CONSOLE' Name: #/
               </span>
             </CodeSimulator>
           </div>
