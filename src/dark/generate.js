@@ -71,7 +71,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           variableName,
           indexForBreaked,
           firstInstructions + "\n" + theInstructions,
-          variableInSpeak
+          variableInSpeak,
         ];
       }
       return ["SUCCESS", result.join("\n")];
@@ -149,14 +149,35 @@ function generateJsForStatementOrExpr(node) {
     return "[" + argList + "]";
   } else if (node.type === "empty_line") {
     return "";
+  } else if (node.type === "return") {
+    return `return ${node.value.value};`;
   } else if (node.type === "input_assign") {
     var variableName = node.var_name.value;
     var variableValue = node.value.input.value;
-    if(!isNaN(variableValue)){
+    if (!isNaN(variableValue)) {
       variableValue = `"${variableValue}"`;
     }
-
     return [variableName, variableValue];
+  } else if (node.type === "task") {
+    var arrayOfFunction = [];
+
+    for (var j = 0; j < node.body.length; j++) {
+      let statement = node.body[j];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfFunction.push(line);
+    }
+    var theInstructionsFunction = arrayOfFunction.join("\n").toString();
+    var params = node.parameters;
+    params = params.map(param => {
+      return param.value;
+    })
+    const result =  `
+      var ${node.identifierName.value} = (${params}) => {
+        ${theInstructionsFunction}
+      }
+    `;
+    
+    return result;
   } else {
     throw new Error(`Unhandled AST node type ${node.type}`);
   }

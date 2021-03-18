@@ -109,15 +109,17 @@ const IndexNav = ({
       </h1>
       <button
         onClick={() => {
-          var textarea = consoleTextAreaRef.current;
-          textarea.value = "";
-          defaultTextAreaConsole.current = "";
-          setCodeOutputError(0);
-          startingIndex.current = 0;
-          firstInstructions.current = "";
-          variableInSpeak.current = "";
-          askedVariableName.current = "";
-          askFunction();
+          if (!isDocumentation) {
+            var textarea = consoleTextAreaRef.current;
+            textarea.value = "";
+            defaultTextAreaConsole.current = "";
+            setCodeOutputError(0);
+            startingIndex.current = 0;
+            firstInstructions.current = "";
+            variableInSpeak.current = "";
+            askedVariableName.current = "";
+            askFunction();
+          }
         }}
       >
         <div>RUN</div>

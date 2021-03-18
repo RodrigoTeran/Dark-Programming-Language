@@ -27,7 +27,108 @@ var grammar = {
     { name: "statement", symbols: ["input_assign"], postprocess: id },
     { name: "statement", symbols: ["fun_call"], postprocess: id },
     { name: "statement", symbols: ["var_assign"], postprocess: id },
+    { name: "statement", symbols: ["task_function"], postprocess: id },
     { name: "statement", symbols: ["_"], postprocess: id },
+    {
+      name: "statementsFunction",
+      symbols: ["statementFunction"],
+      postprocess: (data) => {
+        return [data[0]];
+      },
+    },
+    {
+      name: "statementsFunction",
+      symbols: [
+        "statementsFunction",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "statementFunction",
+      ],
+      postprocess: (data) => {
+        return [...data[0], data[2]];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "fun_call"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "var_assign"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "task_function"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [lexer.has("string") ? { type: "string" } : "string"],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: ["item_list"],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [{ literal: "WIN" }],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [{ literal: "FAIL" }],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [lexer.has("number") ? { type: "number" } : "number"],
+    },
+    {
+      name: "statementFunction$ebnf$1$subexpression$1",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
+    },
+    { name: "statementFunction$ebnf$1$subexpression$1", symbols: ["list"] },
+    {
+      name: "statementFunction$ebnf$1",
+      symbols: ["statementFunction$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "statementFunction$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: [
+        "_",
+        { literal: "return" },
+        "_",
+        lexer.has("thickArrow") ? { type: "thickArrow" } : "thickArrow",
+        "_",
+        "statementFunction$ebnf$1",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "return",
+          value: data[5] ? data[5][0] : false,
+        };
+      },
+    },
+    { name: "statementFunction", symbols: ["_"], postprocess: id },
     {
       name: "input_assign",
       symbols: [
@@ -47,24 +148,6 @@ var grammar = {
       },
     },
     {
-      name: "var_assign",
-      symbols: [
-        lexer.has("identifier") ? { type: "identifier" } : "identifier",
-        "_",
-        lexer.has("assign") ? { type: "assign" } : "assign",
-        "_",
-        "expr",
-        "_",
-      ],
-      postprocess: (data) => {
-        return {
-          type: "var_assign",
-          var_name: data[0],
-          value: data[4],
-        };
-      },
-    },
-    {
       name: "input_fun$ebnf$1$subexpression$1",
       symbols: [lexer.has("string") ? { type: "string" } : "string"],
     },
@@ -74,7 +157,9 @@ var grammar = {
     },
     {
       name: "input_fun$ebnf$1$subexpression$1",
-      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
     },
     {
       name: "input_fun$ebnf$1$subexpression$1",
@@ -141,6 +226,79 @@ var grammar = {
       },
     },
     {
+      name: "var_assign",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+        "_",
+        lexer.has("assign") ? { type: "assign" } : "assign",
+        "_",
+        "expr",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "var_assign",
+          var_name: data[0],
+          value: data[4],
+        };
+      },
+    },
+    {
+      name: "task_function$ebnf$1$subexpression$1",
+      symbols: ["param_list", "_"],
+    },
+    {
+      name: "task_function$ebnf$1",
+      symbols: ["task_function$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "task_function$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "task_function",
+      symbols: [
+        { literal: "task" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "_",
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+        lexer.has("lparen") ? { type: "lparen" } : "lparen",
+        "_",
+        "task_function$ebnf$1",
+        lexer.has("rparen") ? { type: "rparen" } : "rparen",
+        "_",
+        "task_body",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "task",
+          parameters: data[7] ? data[7][0] : [],
+          body: data[10],
+          identifierName: data[4],
+        };
+      },
+    },
+    {
+      name: "task_body",
+      symbols: [
+        lexer.has("lbrace") ? { type: "lbrace" } : "lbrace",
+        "_",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "statementsFunction",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "_",
+        lexer.has("rbrace") ? { type: "rbrace" } : "rbrace",
+      ],
+      postprocess: (data) => {
+        return data[3];
+      },
+    },
+    {
       name: "arg_list",
       symbols: ["expr"],
       postprocess: (data) => {
@@ -150,6 +308,26 @@ var grammar = {
     {
       name: "arg_list",
       symbols: ["arg_list", "__", "expr"],
+      postprocess: (data) => {
+        return [...data[0], data[2]];
+      },
+    },
+    {
+      name: "param_list",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
+      postprocess: (data) => {
+        return [data[0]];
+      },
+    },
+    {
+      name: "param_list",
+      symbols: [
+        "param_list",
+        "__",
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
       postprocess: (data) => {
         return [...data[0], data[2]];
       },
@@ -188,7 +366,9 @@ var grammar = {
     },
     {
       name: "item_list$ebnf$1$subexpression$1",
-      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
     },
     {
       name: "item_list$ebnf$1",
@@ -257,7 +437,9 @@ var grammar = {
     },
     {
       name: "expr",
-      symbols: [lexer.has("identifier") ? { type: "identifier" } : "identifier"],
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
       postprocess: id,
     },
     { name: "expr", symbols: ["fun_call"], postprocess: id },

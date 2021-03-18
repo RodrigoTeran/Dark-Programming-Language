@@ -15,6 +15,8 @@ export const grammar = {
 
   // Variables
   identifier: /[a-zA-Z][a-zA-Z_0-9]*/,
+  arrow: "->",
+  thickArrow: "=>",
 
   // Logic Operators
   equal: "==",

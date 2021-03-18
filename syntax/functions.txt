@@ -4,7 +4,22 @@
 task -> variableFunction(parameter){
 
 
-  => return(parameter * 3)
+  return => parameter
 }
 
 result = variableFunction()
+
+
+
+
+task -> welcome(name) {
+	speak("Hi " name ", welcome to this language")
+	return => "end"
+}
+
+name = ask("Name: ")
+
+response = welcome(name)
+
+speak()
+speak(response)
