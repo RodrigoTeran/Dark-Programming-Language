@@ -1,6 +1,7 @@
 export const speak = () => {
   const string = `const speak = (...args) => {
     result_code_dark_programming_language.push(args.join(""));
+    return args.join("");
   };`;
   return string;
 };

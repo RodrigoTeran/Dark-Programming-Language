@@ -60,7 +60,7 @@ statementFunction
         return data[1];
       }
     %}  
-  | _ "return" _ %thickArrow _ (%string | %string2 | item_list | "WIN" | "FAIL" | %number | %identifier | list):?
+  | _ "return" _ %thickArrow _ (expr_return):? _
     {%
       (data) => {
         return {
@@ -119,7 +119,7 @@ var_assign
         }
       %}
 
-task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rparen _ task_body
+task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rparen _ task_body _
   {%
     (data) => {
       return {
@@ -132,7 +132,7 @@ task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rpare
   %}
 
 task_body
-  ->  %lbrace _ %NL statementsFunction %NL _ %rbrace
+  ->  %lbrace _ %NL statementsFunction %NL _ %rbrace _
     {%
       (data) => {
           return data[3];
@@ -168,7 +168,7 @@ param_list
     %}
 
 list
-  -> %lbracket _ (arg_list _):? %rbracket
+  -> %lbracket _ (arg_list _):? %rbracket _
     {%
       (data) => {
         return {
@@ -179,7 +179,7 @@ list
     %}
 
 item_list
-  -> %identifier %lbracket _ (%number | %identifier):? %rbracket
+  -> %identifier %lbracket _ (%number | %identifier):? %rbracket _
     {%
       (data) => {
         return {
@@ -215,6 +215,32 @@ expr
   | %number          {% id %}
   | %identifier      {% id %}
   | fun_call         {% id %}
+  | list             {% id %}
+
+expr_return
+  -> %string         {% id %}
+  | %string2         {% id %}
+  | item_list        {% id %}
+  | "WIN"
+      {%
+        (data) => {
+          return {
+            type: "true",
+            value: true
+          };
+        }
+      %}
+  | "FAIL"
+      {%
+        (data) => {
+          return {
+            type: "false",
+            value: false
+          };
+        }
+      %}
+  | %number          {% id %}
+  | %identifier      {% id %}
   | list             {% id %}
     
 

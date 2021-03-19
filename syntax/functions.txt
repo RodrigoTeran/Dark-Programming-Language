@@ -23,3 +23,35 @@ response = welcome(name)
 
 speak()
 speak(response)
+
+
+
+
+
+
+
+
+
+task -> ask() {
+	return => 3
+}
+
+task -> welcome(name) {
+	speak("Hi " name ", welcome to this language")
+
+	res = add(ask() 1)
+	speak(res)
+	task -> welcome2(name) {
+		speak("Hiiiii")
+	}
+	welcome2()
+	lista = "WIN"
+	return => lista
+} 
+
+name = ask("Name: ")
+
+response = welcome(name)
+
+speak()
+speak(response)

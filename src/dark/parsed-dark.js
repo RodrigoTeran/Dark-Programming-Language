@@ -70,35 +70,8 @@ var grammar = {
     },
     {
       name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [lexer.has("string") ? { type: "string" } : "string"],
+      symbols: ["expr_return"],
     },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
-    },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: ["item_list"],
-    },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [{ literal: "WIN" }],
-    },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [{ literal: "FAIL" }],
-    },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [lexer.has("number") ? { type: "number" } : "number"],
-    },
-    {
-      name: "statementFunction$ebnf$1$subexpression$1",
-      symbols: [
-        lexer.has("identifier") ? { type: "identifier" } : "identifier",
-      ],
-    },
-    { name: "statementFunction$ebnf$1$subexpression$1", symbols: ["list"] },
     {
       name: "statementFunction$ebnf$1",
       symbols: ["statementFunction$ebnf$1$subexpression$1"],
@@ -120,6 +93,7 @@ var grammar = {
         lexer.has("thickArrow") ? { type: "thickArrow" } : "thickArrow",
         "_",
         "statementFunction$ebnf$1",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -273,6 +247,7 @@ var grammar = {
         lexer.has("rparen") ? { type: "rparen" } : "rparen",
         "_",
         "task_body",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -293,6 +268,7 @@ var grammar = {
         lexer.has("NL") ? { type: "NL" } : "NL",
         "_",
         lexer.has("rbrace") ? { type: "rbrace" } : "rbrace",
+        "_",
       ],
       postprocess: (data) => {
         return data[3];
@@ -352,6 +328,7 @@ var grammar = {
         "_",
         "list$ebnf$1",
         lexer.has("rbracket") ? { type: "rbracket" } : "rbracket",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -390,6 +367,7 @@ var grammar = {
         "_",
         "item_list$ebnf$1",
         lexer.has("rbracket") ? { type: "rbracket" } : "rbracket",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -444,6 +422,50 @@ var grammar = {
     },
     { name: "expr", symbols: ["fun_call"], postprocess: id },
     { name: "expr", symbols: ["list"], postprocess: id },
+    {
+      name: "expr_return",
+      symbols: [lexer.has("string") ? { type: "string" } : "string"],
+      postprocess: id,
+    },
+    {
+      name: "expr_return",
+      symbols: [lexer.has("string2") ? { type: "string2" } : "string2"],
+      postprocess: id,
+    },
+    { name: "expr_return", symbols: ["item_list"], postprocess: id },
+    {
+      name: "expr_return",
+      symbols: [{ literal: "WIN" }],
+      postprocess: (data) => {
+        return {
+          type: "true",
+          value: true,
+        };
+      },
+    },
+    {
+      name: "expr_return",
+      symbols: [{ literal: "FAIL" }],
+      postprocess: (data) => {
+        return {
+          type: "false",
+          value: false,
+        };
+      },
+    },
+    {
+      name: "expr_return",
+      symbols: [lexer.has("number") ? { type: "number" } : "number"],
+      postprocess: id,
+    },
+    {
+      name: "expr_return",
+      symbols: [
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+      ],
+      postprocess: id,
+    },
+    { name: "expr_return", symbols: ["list"], postprocess: id },
     { name: "_$ebnf$1", symbols: [] },
     {
       name: "_$ebnf$1",

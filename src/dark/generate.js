@@ -32,6 +32,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           var result_code_dark_programming_language = [];
   
           Array.prototype.get_item = function (item) {
+            item = parseInt(item)
             if(item < 0){
                 return this[this.length + item];
             } else {
@@ -150,6 +151,19 @@ function generateJsForStatementOrExpr(node) {
   } else if (node.type === "empty_line") {
     return "";
   } else if (node.type === "return") {
+    if (node.value.type === "array_item") {
+      if (!node.value.item.value) {
+        throw new Error(
+          `Need to specify an item position to ${node.array_name.value}`
+        );
+      } else {
+        return `return ${node.value.array_name.value}.get_item(${node.value.item.value})`;
+      }
+    }
+    if (!node.value) {
+      return `return ${node.value};`;
+    }
+
     return `return ${node.value.value};`;
   } else if (node.type === "input_assign") {
     var variableName = node.var_name.value;
@@ -168,15 +182,15 @@ function generateJsForStatementOrExpr(node) {
     }
     var theInstructionsFunction = arrayOfFunction.join("\n").toString();
     var params = node.parameters;
-    params = params.map(param => {
+    params = params.map((param) => {
       return param.value;
-    })
-    const result =  `
+    });
+    const result = `
       var ${node.identifierName.value} = (${params}) => {
         ${theInstructionsFunction}
       }
     `;
-    
+
     return result;
   } else {
     throw new Error(`Unhandled AST node type ${node.type}`);
