@@ -81,7 +81,16 @@ const BuiltInFunctions = () => {
               </span>
             </CodeSimulator>
             <br />
-            <div>If doesn't return any value when assigned to a variable</div>
+            <div>This function returns what it printed in console</div>
+            <CodeSimulator>
+              whatWhasPrinted = speak("Hi" " welcome")
+              <br />
+              speak(whatWhasPrinted)
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: <br /> Hi welcome <br /> Hi welcome #/
+              </span>
+            </CodeSimulator>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
@@ -275,7 +284,7 @@ const BuiltInFunctions = () => {
               result = ask("Name: ")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 'IN CONSOLE' Name: #/
+                /# Expected output: Name: #/
               </span>
             </CodeSimulator>
             <br />
@@ -302,7 +311,7 @@ const BuiltInFunctions = () => {
               speak(name_answer ", good afternoon")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 'IN CONSOLE' Name: #/
+                /# Expected output: Name: #/
               </span>
             </CodeSimulator>
           </div>

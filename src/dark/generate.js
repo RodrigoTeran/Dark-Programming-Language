@@ -151,20 +151,13 @@ function generateJsForStatementOrExpr(node) {
   } else if (node.type === "empty_line") {
     return "";
   } else if (node.type === "return") {
-    if (node.value.type === "array_item") {
-      if (!node.value.item.value) {
-        throw new Error(
-          `Need to specify an item position to ${node.array_name.value}`
-        );
-      } else {
-        return `return ${node.value.array_name.value}.get_item(${node.value.item.value})`;
-      }
-    }
     if (!node.value) {
-      return `return ${node.value};`;
+      return `return ${false};`;
     }
 
-    return `return ${node.value.value};`;
+    const returnValue = generateJsForStatementOrExpr(node.value);
+
+    return `return ${returnValue};`;
   } else if (node.type === "input_assign") {
     var variableName = node.var_name.value;
     var variableValue = node.value.input.value;
