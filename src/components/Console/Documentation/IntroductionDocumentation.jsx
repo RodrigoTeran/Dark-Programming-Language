@@ -12,8 +12,8 @@ const IntroductionDocumentation = () => {
         <div>...</div>
         <br />
         <div>
-          that can only be useful when you write on your resume that you know
-          more programming languages than python.
+          that can only be useful when you write on your CV that you know more
+          programming languages than python.
         </div>
         <br />
         <div>
