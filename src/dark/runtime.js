@@ -56,3 +56,51 @@ export const concatWith = () => {
   };`;
   return string;
 };
+
+export const takeOutEnd = () => {
+  const string = `const takeOutEnd = (...args) => {
+    if(Array.isArray(args[0])) {
+      return args[0].pop();
+    }
+    return;
+  };`;
+  return string;
+};
+
+export const takeOut = () => {
+  const string = `const takeOut = (...args) => {
+    if(Array.isArray(args[0])) {
+      result_code_dark_programming_language_parcial = parseInt(args[1]);
+      if(isNaN(result_code_dark_programming_language_parcial)){
+        return;
+      }
+      return args[0].splice(result_code_dark_programming_language_parcial, 1);
+    }
+    return;
+  };`;
+  return string;
+};
+
+export const insertEnd = () => {
+  const string = `const insertEnd = (...args) => {
+    if(Array.isArray(args[0])) {
+      return args[0].push(args[1]);
+    }
+    return;
+  };`;
+  return string;
+};
+
+export const insert = () => {
+  const string = `const insert = (...args) => {
+    if(Array.isArray(args[0])) {
+      result_code_dark_programming_language_parcial = parseInt(args[1]);
+      if(isNaN(result_code_dark_programming_language_parcial)){
+        return;
+      }
+      args[0].splice(result_code_dark_programming_language_parcial, 0, args[2]);
+    }
+    return;
+  };`;
+  return string;
+};

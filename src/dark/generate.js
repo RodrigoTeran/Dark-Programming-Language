@@ -1,5 +1,15 @@
 // Built in Functions
-import { speak, add, dot, concat, concatWith } from "./runtime";
+import {
+  speak,
+  add,
+  dot,
+  concat,
+  concatWith,
+  takeOutEnd,
+  takeOut,
+  insert,
+  insertEnd,
+} from "./runtime";
 
 export function generateJsForStatements(statements, index, firstInstructions) {
   if (typeof statements === "object") {
@@ -57,6 +67,10 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           ${concat()}
           ${concatWith()}
           ${dot()}
+          ${takeOutEnd()}
+          ${takeOut()}
+          ${insert()}
+          ${insertEnd()}
           ${firstInstructions}
           ${theInstructions}
       

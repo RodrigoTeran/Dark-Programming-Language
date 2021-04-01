@@ -111,7 +111,6 @@ var grammar = {
         lexer.has("assign") ? { type: "assign" } : "assign",
         "_",
         "input_fun",
-        "_",
       ],
       postprocess: (data) => {
         return {
@@ -159,7 +158,6 @@ var grammar = {
         "_",
         "input_fun$ebnf$1",
         lexer.has("rparen") ? { type: "rparen" } : "rparen",
-        "_",
       ],
       postprocess: (data) => {
         return {

@@ -85,7 +85,7 @@ input_assign
     %}
 
 input_fun
-  -> "ask" %lparen _ (%string | %string2 | %identifier | %number _):? %rparen _
+  -> "ask" %lparen _ (%string | %string2 | %identifier | %number _):? %rparen
     {%
       (data) => {
         return {

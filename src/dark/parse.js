@@ -16,6 +16,7 @@ export const codeToParse = (code, index, firstInstructions) => {
     }
     return generateJsForStatements(parser.results[0], index, firstInstructions);
   } catch (error) {
+    // console.log(error)
     return generateJsForStatements(
       `Syntax error: unhandled expression`,
       index,
