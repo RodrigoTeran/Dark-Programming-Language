@@ -28,6 +28,7 @@ var grammar = {
     { name: "statement", symbols: ["fun_call"], postprocess: id },
     { name: "statement", symbols: ["var_assign"], postprocess: id },
     { name: "statement", symbols: ["task_function"], postprocess: id },
+    { name: "statement", symbols: ["comments"], postprocess: id },
     { name: "statement", symbols: ["_"], postprocess: id },
     {
       name: "statementsFunction",
@@ -61,6 +62,7 @@ var grammar = {
         return data[1];
       },
     },
+    { name: "statementFunction", symbols: ["comments"], postprocess: id },
     {
       name: "statementFunction",
       symbols: ["_", "task_function"],
@@ -111,6 +113,7 @@ var grammar = {
         lexer.has("assign") ? { type: "assign" } : "assign",
         "_",
         "input_fun",
+        "_",
       ],
       postprocess: (data) => {
         return {
@@ -253,6 +256,19 @@ var grammar = {
           parameters: data[7] ? data[7][0] : [],
           body: data[10],
           identifierName: data[4],
+        };
+      },
+    },
+    {
+      name: "comments",
+      symbols: [
+        "_",
+        lexer.has("comment") ? { type: "comment" } : "comment",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "comment",
         };
       },
     },

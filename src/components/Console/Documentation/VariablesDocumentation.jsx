@@ -17,7 +17,7 @@ const VariablesDocumentation = () => {
           <li>
             Functions{" "}
             <span style={{ color: "#AAA", marginLeft: "10px" }}>
-              /# Just the result they throw #/
+              /# Just the result they throw
             </span>
           </li>
           <li>Lists</li>

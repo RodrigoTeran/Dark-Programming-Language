@@ -21,7 +21,7 @@ const Tasks = () => {
           <br />
           nameOfYourFunction()
           <br />
-          <span style={{ color: "#AAA" }}>/# Expected output: Hi #/</span>
+          <span style={{ color: "#AAA" }}>/# Expected output: Hi </span>
         </CodeSimulator>
         <br/>
         It is necessary to write "task -&#62;" before your function name
@@ -63,7 +63,7 @@ const Tasks = () => {
           speak("This is your item: " itemResult)
           <br />
           <span style={{ color: "#AAA" }}>/# Expected output: <br /> What index of this list: [1,2,3,4,5] <br />
-          you want to get: #/</span>
+          you want to get: </span>
         </CodeSimulator>
       </div>
     </div>

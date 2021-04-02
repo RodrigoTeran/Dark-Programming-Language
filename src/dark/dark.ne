@@ -23,6 +23,7 @@ statement
   | fun_call                    {% id %}
   | var_assign                  {% id %}
   | task_function               {% id %}
+  | comments                    {% id %}
   | _                           {% id %}
 
 
@@ -54,6 +55,7 @@ statementFunction
         return data[1];
       }
     %}    
+  | comments                    {% id %}
   | _ task_function
     {%
       (data) => {
@@ -127,6 +129,15 @@ task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rpare
         parameters: data[7] ? data[7][0] : [],
         body: data[10],
         identifierName: data[4],
+      }
+    }
+  %}
+
+comments -> _ %comment _ 
+  {%
+    (data) => {
+      return {
+        type: "comment"
       }
     }
   %}

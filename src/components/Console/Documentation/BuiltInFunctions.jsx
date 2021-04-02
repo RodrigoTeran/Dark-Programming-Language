@@ -26,7 +26,7 @@ const BuiltInFunctions = () => {
           <br />
           <span style={{ color: "#AAA" }}>
             /# Expected output: SyntaxError: Identifier 'speak' has already been
-            declared #/
+            declared
           </span>
         </CodeSimulator>
         <br />
@@ -64,7 +64,7 @@ const BuiltInFunctions = () => {
               speak("hi to David")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: hi to David #/
+                /# Expected output: hi to David
               </span>
             </CodeSimulator>
             <br />
@@ -77,7 +77,7 @@ const BuiltInFunctions = () => {
               speak(3 "bar" variable)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 3barmonday #/
+                /# Expected output: 3barmonday
               </span>
             </CodeSimulator>
             <br />
@@ -88,7 +88,7 @@ const BuiltInFunctions = () => {
               speak(whatWhasPrinted)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> Hi welcome <br /> Hi welcome #/
+                /# Expected output: <br /> /# Hi welcome <br /> /# Hi welcome
               </span>
             </CodeSimulator>
           </div>
@@ -110,7 +110,7 @@ const BuiltInFunctions = () => {
               speak("Sum: " sum)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 6 #/
+                /# Expected output: Sum: 6
               </span>
             </CodeSimulator>
             <br />
@@ -124,7 +124,7 @@ const BuiltInFunctions = () => {
               speak("Sum: " sum)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 10 #/
+                /# Expected output: Sum: 10
               </span>
             </CodeSimulator>
             <br />
@@ -137,7 +137,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 11 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 11</span>
             </CodeSimulator>
           </div>
         </div>
@@ -161,7 +161,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 6 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 6</span>
             </CodeSimulator>
             <br />
             <div>
@@ -186,7 +186,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 18 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 18</span>
             </CodeSimulator>
           </div>
         </div>
@@ -207,7 +207,7 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 23string3 #/
+                /# Expected output: 23string3
               </span>
             </CodeSimulator>
             <br />
@@ -231,7 +231,7 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 1 - 2 - 3 - 4 - 5 #/
+                /# Expected output: 1 - 2 - 3 - 4 - 5
               </span>
             </CodeSimulator>
             <br />
@@ -246,8 +246,8 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> TypeError: Reduce of empty array with
-                no initial value #/
+                /# Expected output: <br /> /# TypeError: Reduce of empty array with
+                no initial value
               </span>
             </CodeSimulator>
           </div>
@@ -284,7 +284,7 @@ const BuiltInFunctions = () => {
               result = ask("Name: ")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Name: #/
+                /# Expected output: Name:
               </span>
             </CodeSimulator>
             <br />
@@ -311,7 +311,7 @@ const BuiltInFunctions = () => {
               speak(name_answer ", good afternoon")
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Name: #/
+                /# Expected output: Name:
               </span>
             </CodeSimulator>
           </div>

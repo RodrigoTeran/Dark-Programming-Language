@@ -8,6 +8,7 @@ import BuiltInFunctions from "./Documentation/BuiltInFunctions";
 import DataTypesDocumentation from "./Documentation/DataTypes";
 import ListsMethods from "./Documentation/ListsMethods";
 import Tasks from "./Documentation/Tasks";
+import CommentsDocumentation from "./Documentation/Comments";
 
 const IndexConsole = ({
   consoleRef,
@@ -79,6 +80,7 @@ const IndexConsole = ({
           <IntroductionDocumentation></IntroductionDocumentation>
           <VariablesDocumentation></VariablesDocumentation>
           <DataTypesDocumentation></DataTypesDocumentation>
+          <CommentsDocumentation></CommentsDocumentation>
           <ListsMethods></ListsMethods>
           <Tasks></Tasks>
           <BuiltInFunctions></BuiltInFunctions>

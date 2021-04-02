@@ -41,7 +41,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(variableString)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: hi </span>
             </CodeSimulator>
             <br />
             <div>With quotes inside:</div>
@@ -50,7 +50,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(variableString)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: "hi" #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: "hi" </span>
             </CodeSimulator>
           </div>
         </div>
@@ -121,7 +121,7 @@ const DataTypesDocumentation = () => {
               speak(1 2 3 4 5 6 7 8)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 12345678 #/
+                /# Expected output: 12345678 
               </span>
             </CodeSimulator>
             <br />
@@ -138,7 +138,7 @@ const DataTypesDocumentation = () => {
               speak(list1 " " list2 " " list3 " " list4)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: 1,2 3,4 5,6 7,8 #/
+                /# Expected output: 1,2 3,4 5,6 7,8 
               </span>
             </CodeSimulator>
             <br />
@@ -172,7 +172,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(variableBoolean)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: true #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: true </span>
             </CodeSimulator>
             <br />
             <CodeSimulator>
@@ -181,7 +181,7 @@ const DataTypesDocumentation = () => {
               speak(variableBoolean)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: false #/
+                /# Expected output: false 
               </span>
             </CodeSimulator>
             <br />
@@ -196,7 +196,7 @@ const DataTypesDocumentation = () => {
               <br />
               speak(false)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: hi #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: hi </span>
             </CodeSimulator>
             <br />
             <div>but you cannot overwrite the value of WIN and FAIL</div>
@@ -205,14 +205,14 @@ const DataTypesDocumentation = () => {
               <br />
               speak(WIN)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: true #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: true </span>
             </CodeSimulator>
             <br />
             <div>Boolean variables are not treated as numbers</div>
             <CodeSimulator>
               speak(add(1 2 3 WIN FAIL))
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 6 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 6 </span>
             </CodeSimulator>
           </div>
         </div>

@@ -51,7 +51,7 @@ const ListsMethods = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 3 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 3 </span>
             </CodeSimulator>
             <br />
             <div>Remember that in programming we start counting from zero</div>
@@ -71,7 +71,7 @@ const ListsMethods = () => {
               <br />
               speak(result)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: 5 #/</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: 5 </span>
             </CodeSimulator>
             <br />
             <div>
@@ -97,7 +97,7 @@ const ListsMethods = () => {
               speak("Output: " result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Output: #/
+                /# Expected output: Output: 
               </span>
             </CodeSimulator>
           </div>
@@ -129,7 +129,7 @@ const ListsMethods = () => {
               speak("Item removed: " takeOutEnd(list) ", list is now: " list)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Item removed: 5, list is now: 1,2,3,4 #/
+                /# Expected output: Item removed: 5, list is now: 1,2,3,4 
               </span>
             </CodeSimulator>
           </div>
@@ -168,7 +168,7 @@ const ListsMethods = () => {
               speak("Item removed: " takeOut(list -2) ", list is now: " list)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Item removed: 4, list is now: 1,2,3,5 #/
+                /# Expected output: Item removed: 4, list is now: 1,2,3,5 
               </span>
             </CodeSimulator>
           </div>
@@ -211,7 +211,7 @@ const ListsMethods = () => {
               <br />
               <span style={{ color: "#AAA" }}>
                 /# Expected output: Index where inserted: 4, list is now:
-                1,2,3,Last item #/
+                1,2,3,Last item 
               </span>
             </CodeSimulator>
           </div>
@@ -257,7 +257,7 @@ const ListsMethods = () => {
               speak("list is now: " list)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: list is now: 1,New item,2,3 #/
+                /# Expected output: list is now: 1,New item,2,3 
               </span>
             </CodeSimulator>
           </div>
