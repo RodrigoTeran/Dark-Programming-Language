@@ -36,7 +36,9 @@ const BuiltInFunctions = () => {
         <ul>
           <li>speak()</li>
           <li>add()</li>
+          <li>discount()</li>
           <li>dot()</li>
+          <li>over()</li>
           <li>concat()</li>
           <li>concatWith()</li>
           <li>ask()</li>
@@ -109,9 +111,7 @@ const BuiltInFunctions = () => {
               <br />
               speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 6
-              </span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 6</span>
             </CodeSimulator>
             <br />
             <div>It returns the sum of the numbers</div>
@@ -123,9 +123,7 @@ const BuiltInFunctions = () => {
               <br />
               speak("Sum: " sum)
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: Sum: 10
-              </span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Sum: 10</span>
             </CodeSimulator>
             <br />
             <div>
@@ -139,6 +137,29 @@ const BuiltInFunctions = () => {
               <br />
               <span style={{ color: "#AAA" }}>/# Expected output: 11</span>
             </CodeSimulator>
+          </div>
+        </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ discount() ------------------------------------*/}
+          <h3>
+            <span>discount()</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <div>
+              This function discounts each value from the one before
+            </div>
+            <div>This function is better used with numbers as well...</div>
+            <CodeSimulator>
+              res = discount(10 5 2)
+              <br />
+              speak("Result: " res)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: Result: 3</span>
+            </CodeSimulator>
+            <br />
+            <div>
+              also, it still works when it is passed numbers values as strings and also it ignores the non number values
+            </div>
           </div>
         </div>
         <div className="containerConsole__documentationContainer__section__2">
@@ -190,6 +211,28 @@ const BuiltInFunctions = () => {
             </CodeSimulator>
           </div>
         </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ over() ------------------------------------*/}
+          <h3>
+            <span>over()</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <div>
+              This function divides each value from the one before
+            </div>
+            <CodeSimulator>
+              res = over(15.5 0.5)
+              <br />
+              speak("Result: " res)
+              <br />
+              <span style={{ color: "#AAA" }}>/# Expected output: Result: 31</span>
+            </CodeSimulator>
+            <br />
+            <div>
+              also, it is as clever as the other ones...
+            </div>
+          </div>
+        </div>        
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ concat() ------------------------------------*/}
           <h3>
@@ -246,8 +289,8 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> /# TypeError: Reduce of empty array with
-                no initial value
+                /# Expected output: <br /> /# TypeError: Reduce of empty array
+                with no initial value
               </span>
             </CodeSimulator>
           </div>
@@ -283,9 +326,7 @@ const BuiltInFunctions = () => {
             <CodeSimulator>
               result = ask("Name: ")
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: Name:
-              </span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Name:</span>
             </CodeSimulator>
             <br />
             <div>
@@ -310,9 +351,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(name_answer ", good afternoon")
               <br />
-              <span style={{ color: "#AAA" }}>
-                /# Expected output: Name:
-              </span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Name:</span>
             </CodeSimulator>
           </div>
         </div>

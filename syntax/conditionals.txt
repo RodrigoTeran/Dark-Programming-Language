@@ -2,7 +2,7 @@ assuming -> variable == "hello" {
 
 } assuming -> variable == "hi" or variable == "Hi" {
 
-} different assumption -> variable == "world" {
+} differentAssumption -> variable == "world" {
 
 } different {
 

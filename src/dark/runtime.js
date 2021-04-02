@@ -8,24 +8,68 @@ export const speak = () => {
 
 export const add = () => {
   const string = `const add = (...args) => {
-    result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
+    try {
+      result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
 
-    result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
+  
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.map(element => parseFloat(element))
+  
+      return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a + b) * 100) / 100;
+    } catch {
+      return;
+    }
+  };`;
+  return string;
+};
 
-    result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.map(element => parseFloat(element))
+export const discount = () => {
+  const string = `const discount = (...args) => {
+    try {
+      result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
 
-    return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a + b) * 100) / 100;
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
+  
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.map(element => parseFloat(element))
+  
+      return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a - b) * 100) / 100;
+    } catch {
+      return;
+    }
+  };`;
+  return string;
+};
+
+export const over = () => {
+  const string = `const over = (...args) => {
+    try {
+      result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
+
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
+  
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.map(element => parseFloat(element))
+  
+      return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a / b) * 100) / 100;
+    } catch {
+      return;
+    }
   };`;
   return string;
 };
 
 export const dot = () => {
   const string = `const dot = (...args) => {
-    result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
+    try {
+      result_code_dark_programming_language_parcial = args.filter(element => !isNaN(element));
 
-    result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.filter(element => typeof element !== "boolean");
 
-    return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a * b) * 100) / 100;
+      result_code_dark_programming_language_parcial = result_code_dark_programming_language_parcial.map(element => parseFloat(element))
+  
+      return Math.floor(result_code_dark_programming_language_parcial.reduce((a, b) => a * b) * 100) / 100;
+    } catch {
+      return;
+    }
   };`;
   return string;
 };

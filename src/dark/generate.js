@@ -9,6 +9,8 @@ import {
   takeOut,
   insert,
   insertEnd,
+  discount,
+  over
 } from "./runtime";
 
 export function generateJsForStatements(statements, index, firstInstructions) {
@@ -64,9 +66,11 @@ export function generateJsForStatements(statements, index, firstInstructions) {
   
           ${speak()}
           ${add()}
+          ${discount()}
           ${concat()}
           ${concatWith()}
           ${dot()}
+          ${over()}
           ${takeOutEnd()}
           ${takeOut()}
           ${insert()}
