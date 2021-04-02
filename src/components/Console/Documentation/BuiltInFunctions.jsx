@@ -326,7 +326,7 @@ const BuiltInFunctions = () => {
             <CodeSimulator>
               result = ask("Name: ")
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Name:</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Name</span>
             </CodeSimulator>
             <br />
             <div>
@@ -351,7 +351,7 @@ const BuiltInFunctions = () => {
               <br />
               speak(name_answer ", good afternoon")
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Name:</span>
+              <span style={{ color: "#AAA" }}>/# Expected output: Name</span>
             </CodeSimulator>
           </div>
         </div>

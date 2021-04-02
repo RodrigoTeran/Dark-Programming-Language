@@ -29,6 +29,9 @@ var grammar = {
     { name: "statement", symbols: ["var_assign"], postprocess: id },
     { name: "statement", symbols: ["task_function"], postprocess: id },
     { name: "statement", symbols: ["comments"], postprocess: id },
+    { name: "statement", symbols: ["if_statement"], postprocess: id },
+    { name: "statement", symbols: ["elseIf_statement"], postprocess: id },
+    { name: "statement", symbols: ["else_statement"], postprocess: id },
     { name: "statement", symbols: ["_"], postprocess: id },
     {
       name: "statementsFunction",
@@ -49,6 +52,24 @@ var grammar = {
       },
     },
     {
+      name: "statementsOperators",
+      symbols: ["statementOperator"],
+      postprocess: (data) => {
+        return [data[0]];
+      },
+    },
+    {
+      name: "statementsOperators",
+      symbols: [
+        "statementsOperators",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "statementOperator",
+      ],
+      postprocess: (data) => {
+        return [...data[0], data[2]];
+      },
+    },
+    {
       name: "statementFunction",
       symbols: ["_", "fun_call"],
       postprocess: (data) => {
@@ -63,6 +84,27 @@ var grammar = {
       },
     },
     { name: "statementFunction", symbols: ["comments"], postprocess: id },
+    {
+      name: "statementFunction",
+      symbols: ["_", "if_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "elseIf_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "else_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
     {
       name: "statementFunction",
       symbols: ["_", "task_function"],
@@ -105,6 +147,50 @@ var grammar = {
       },
     },
     { name: "statementFunction", symbols: ["_"], postprocess: id },
+    {
+      name: "statementOperator",
+      symbols: ["_", "fun_call"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "var_assign"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    { name: "statementOperator", symbols: ["comments"], postprocess: id },
+    {
+      name: "statementOperator",
+      symbols: ["_", "if_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "elseIf_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "else_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "task_function"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    { name: "statementOperator", symbols: ["_"], postprocess: id },
     {
       name: "input_assign",
       symbols: [
@@ -257,6 +343,75 @@ var grammar = {
           body: data[10],
           identifierName: data[4],
         };
+      },
+    },
+    {
+      name: "if_statement",
+      symbols: [
+        { literal: "assuming" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "comparisonsNearley",
+        "operators_body",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "ifStatement",
+          comparisons: data[3],
+          body: data[4],
+        };
+      },
+    },
+    {
+      name: "elseIf_statement",
+      symbols: [
+        { literal: "differentAssumption" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "comparisonsNearley",
+        "operators_body",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "elseIfStatement",
+          comparisons: data[3],
+          body: data[4],
+        };
+      },
+    },
+    {
+      name: "else_statement",
+      symbols: [
+        { literal: "different" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "_",
+        "operators_body",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "elseStatement",
+          body: data[4],
+        };
+      },
+    },
+    {
+      name: "operators_body",
+      symbols: [
+        lexer.has("lbrace") ? { type: "lbrace" } : "lbrace",
+        "_",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "statementsOperators",
+        lexer.has("NL") ? { type: "NL" } : "NL",
+        "_",
+        lexer.has("rbrace") ? { type: "rbrace" } : "rbrace",
+        "_",
+      ],
+      postprocess: (data) => {
+        return data[3];
       },
     },
     {
@@ -480,6 +635,136 @@ var grammar = {
       postprocess: id,
     },
     { name: "expr_return", symbols: ["list"], postprocess: id },
+    {
+      name: "booleanOperators",
+      symbols: [{ literal: "and" }],
+      postprocess: (data) => {
+        return {
+          type: "booleanOperator",
+          value: "and",
+        };
+      },
+    },
+    {
+      name: "booleanOperators",
+      symbols: [{ literal: "or" }],
+      postprocess: (data) => {
+        return {
+          type: "booleanOperator",
+          value: "or",
+        };
+      },
+    },
+    {
+      name: "noupBooleanOperator",
+      symbols: [{ literal: "noup" }],
+      postprocess: (data) => {
+        return {
+          type: "booleanOperator",
+          value: "noup",
+        };
+      },
+    },
+    {
+      name: "logicOperators",
+      symbols: [lexer.has("equal") ? { type: "equal" } : "equal"],
+      postprocess: id,
+    },
+    {
+      name: "logicOperators",
+      symbols: [lexer.has("notEqual") ? { type: "notEqual" } : "notEqual"],
+      postprocess: id,
+    },
+    {
+      name: "logicOperators",
+      symbols: [
+        lexer.has("greaterEqualThan")
+          ? { type: "greaterEqualThan" }
+          : "greaterEqualThan",
+      ],
+      postprocess: id,
+    },
+    {
+      name: "logicOperators",
+      symbols: [
+        lexer.has("lowerEqualThan")
+          ? { type: "lowerEqualThan" }
+          : "lowerEqualThan",
+      ],
+      postprocess: id,
+    },
+    {
+      name: "logicOperators",
+      symbols: [
+        lexer.has("greaterThan") ? { type: "greaterThan" } : "greaterThan",
+      ],
+      postprocess: id,
+    },
+    {
+      name: "logicOperators",
+      symbols: [lexer.has("lowerThan") ? { type: "lowerThan" } : "lowerThan"],
+      postprocess: id,
+    },
+    {
+      name: "comparison$ebnf$1$subexpression$1",
+      symbols: ["noupBooleanOperator", "__"],
+    },
+    {
+      name: "comparison$ebnf$1",
+      symbols: ["comparison$ebnf$1$subexpression$1"],
+      postprocess: id,
+    },
+    {
+      name: "comparison$ebnf$1",
+      symbols: [],
+      postprocess: function (d) {
+        return null;
+      },
+    },
+    {
+      name: "comparison",
+      symbols: [
+        "comparison$ebnf$1",
+        "expr",
+        "__",
+        "logicOperators",
+        "__",
+        "expr",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "comparison",
+          firstExpr: data[1],
+          secondExpr: data[5],
+          logic: data[3],
+          withNoup: data[0] ? true : false,
+        };
+      },
+    },
+    {
+      name: "comparisons",
+      symbols: ["comparison"],
+      postprocess: (data) => {
+        return [data[0]];
+      },
+    },
+    {
+      name: "comparisons",
+      symbols: ["comparisons", "__", "booleanOperators", "__", "comparison"],
+      postprocess: (data) => {
+        return [...data[0], data[2], data[4]];
+      },
+    },
+    {
+      name: "comparisonsNearley",
+      symbols: ["_", "comparisons", "_"],
+      postprocess: (data) => {
+        return {
+          type: "comparisons",
+          value: data[1],
+        };
+      },
+    },
     { name: "_$ebnf$1", symbols: [] },
     {
       name: "_$ebnf$1",

@@ -24,8 +24,10 @@ statement
   | var_assign                  {% id %}
   | task_function               {% id %}
   | comments                    {% id %}
+  | if_statement                {% id %}
+  | elseIf_statement            {% id %}
+  | else_statement              {% id %}  
   | _                           {% id %}
-
 
 
 statementsFunction
@@ -36,6 +38,20 @@ statementsFunction
         }
       %}
     | statementsFunction %NL statementFunction
+      {%
+        (data) => {
+          return [...data[0], data[2]];
+        }
+      %}
+
+statementsOperators
+  -> statementOperator
+      {%
+        (data) => {
+          return [data[0]];
+        }
+      %}
+    | statementsOperators %NL statementOperator
       {%
         (data) => {
           return [...data[0], data[2]];
@@ -56,6 +72,24 @@ statementFunction
       }
     %}    
   | comments                    {% id %}
+  | _ if_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %} 
+  | _ elseIf_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ else_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}     
   | _ task_function
     {%
       (data) => {
@@ -71,6 +105,47 @@ statementFunction
         }
       }
     %}  
+  | _                             {% id %}
+
+
+statementOperator
+  -> _ fun_call
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ var_assign
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | comments                    {% id %}
+  | _ if_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ elseIf_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ else_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}    
+  | _ task_function
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
   | _                             {% id %}
 
 
@@ -132,6 +207,46 @@ task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rpare
       }
     }
   %}
+
+if_statement -> "assuming" _ %arrow comparisonsNearley operators_body _
+  {%
+    (data) => {
+      return {
+        type: "ifStatement",
+        comparisons: data[3],
+        body: data[4],
+      }
+    }
+  %}
+
+elseIf_statement -> "differentAssumption" _ %arrow comparisonsNearley operators_body _
+  {%
+    (data) => {
+      return {
+        type: "elseIfStatement",
+        comparisons: data[3],
+        body: data[4],
+      }
+    }
+  %}
+
+else_statement -> "different" _ %arrow _ operators_body _
+  {%
+    (data) => {
+      return {
+        type: "elseStatement",
+        body: data[4],
+      }
+    }
+  %}
+
+operators_body
+  ->  %lbrace _ %NL statementsOperators %NL _ %rbrace _
+    {%
+      (data) => {
+        return data[3];
+      }
+    %}
 
 comments -> _ %comment _ 
   {%
@@ -254,6 +369,85 @@ expr_return
   | %identifier      {% id %}
   | list             {% id %}
     
+booleanOperators
+  -> "and"
+      {%
+        (data) => {
+          return {
+            type: "booleanOperator",
+            value: "and"
+          };
+        }
+      %}
+  | "or"
+      {%
+        (data) => {
+          return {
+            type: "booleanOperator",
+            value: "or"
+          };
+        }
+      %}
+
+
+noupBooleanOperator -> "noup"
+  {%
+    (data) => {
+      return {
+        type: "booleanOperator",
+        value: "noup"
+      };
+    }
+  %}
+
+
+logicOperators
+  -> %equal                    {% id %}
+  | %notEqual                  {% id %}
+  | %greaterEqualThan          {% id %}
+  | %lowerEqualThan            {% id %}
+  | %greaterThan               {% id %}
+  | %lowerThan                 {% id %}
+
+
+comparison
+  -> (noupBooleanOperator __):? expr __ logicOperators __ expr
+    {%
+      (data) => {
+        return {
+          type: "comparison",
+          firstExpr: data[1],
+          secondExpr: data[5],
+          logic: data[3],
+          withNoup: data[0] ? true : false
+        };
+      }
+    %}
+
+comparisons
+  -> comparison
+    {% 
+      (data) => {
+        return [data[0]];
+      }
+    %}
+  | comparisons __ booleanOperators __ comparison
+    {%
+      (data) => {
+        return [...data[0], data[2], data[4]]
+      }
+    %}
+
+comparisonsNearley -> _ comparisons _
+    {%
+      (data) => {
+        return {
+          type: "comparisons",
+          value: data[1]
+        }
+      }
+    %}
+
 
 # Optional whitespace
 _ -> %WS:*

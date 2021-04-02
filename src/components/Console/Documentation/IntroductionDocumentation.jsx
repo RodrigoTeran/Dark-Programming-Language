@@ -20,6 +20,19 @@ const IntroductionDocumentation = () => {
           DARK is a light-weight language based on python and javascript syntax.
         </div>
         <br />
+        <div>
+          if in the examples you dont understand a concept, it might be
+          explained later
+        </div>
+        <div>
+          in the documentation, so you can skip to read those cocepts...
+          <br />
+          <br />
+          if you still can't understand it, google it :){" "}
+          <br/><br/><span style={{ color: "#AAA" }}>...just kidding...</span>
+        </div>
+        <br />
+        <br/>
         <div style={{ color: "#7889d3" }}> - Last stable version: 0.0.1</div>
       </div>
     </div>

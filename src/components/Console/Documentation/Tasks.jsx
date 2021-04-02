@@ -63,7 +63,7 @@ const Tasks = () => {
           speak("This is your item: " itemResult)
           <br />
           <span style={{ color: "#AAA" }}>/# Expected output: <br /> What index of this list: [1,2,3,4,5] <br />
-          you want to get: </span>
+          you want to get </span>
         </CodeSimulator>
       </div>
     </div>

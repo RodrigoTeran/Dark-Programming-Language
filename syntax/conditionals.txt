@@ -1,9 +1,46 @@
 assuming -> variable == "hello" {
 
-} assuming -> variable == "hi" or variable == "Hi" {
+} 
+assuming -> variable == "hi" or variable == "Hi" {
 
-} differentAssumption -> variable == "world" {
+} 
+differentAssumption -> variable == "world" {
 
-} different {
+} 
+different {
 
 }
+
+
+
+/# Conditionals
+
+/# This function returns a statement representing your life stage
+task -> stageOfLife(age) {
+	res = ""
+
+	/# Check if the age is going to be ignored
+	/# if the sum stays in 3 and the age is no 0
+	/# then it was ignored because it was not a number
+
+	checkIfNumber = add(3 age)
+	assuming -> checkIfNumber == 3 and age != 0 {
+		res = "Not a number"
+	}
+	differentAssumption -> age >= 100 or age < 0 {
+		res = "Impossible age"
+	}
+	differentAssumption -> age >= 18 {
+		res = "Adult"
+	}
+	differentAssumption -> age >= 12 {
+		res = "Teenager"
+	}
+	different -> {
+		res = "Baby :)"
+	}	
+	return => res
+}
+
+age = ask("Your age: ")
+speak(stageOfLife(age))

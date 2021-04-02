@@ -27,7 +27,7 @@ const CommentsDocumentation = () => {
           <br />
           speak(add2Always(number))
           <br />
-          <span style={{ color: "#AAA" }}>/# Expected output: Number:</span>
+          <span style={{ color: "#AAA" }}>/# Expected output: Number</span>
         </CodeSimulator>
         <br />
         Just write /# at the beginning of the comment and it will be ignored

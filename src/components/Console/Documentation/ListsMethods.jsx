@@ -97,7 +97,7 @@ const ListsMethods = () => {
               speak("Output: " result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: Output: 
+                /# Expected output: Output 
               </span>
             </CodeSimulator>
           </div>

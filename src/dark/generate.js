@@ -10,7 +10,7 @@ import {
   insert,
   insertEnd,
   discount,
-  over
+  over,
 } from "./runtime";
 
 export function generateJsForStatements(statements, index, firstInstructions) {
@@ -205,6 +205,83 @@ function generateJsForStatementOrExpr(node) {
     return result;
   } else if (node.type === "comment") {
     return;
+  } else if (node.type === "booleanOperator") {
+    return `${node.value === "and" ? "&&" : "||"}`;
+  } else if (node.type === "comparison") {
+    var first = generateJsForStatementOrExpr(node.firstExpr);
+    var second = generateJsForStatementOrExpr(node.secondExpr);
+    return `${node.withNoup ? "!" : ""}${first} ${node.logic.value} ${second}`;
+  } else if (node.type === "comparisons") {
+    // node.value
+    var arrayOfOperator = [];
+    for (var k = 0; k < node.value.length; k++) {
+      let comparisonOrBoolean = node.value[k];
+      const line = generateJsForStatementOrExpr(comparisonOrBoolean);
+      arrayOfOperator.push(line);
+    }
+    return arrayOfOperator.join(" ").toString();
+  } else if (node.type === "ifStatement") {
+    // node.comparisons
+    const comparisonsIf = generateJsForStatementOrExpr(node.comparisons);
+
+    // node.body
+    var arrayOfOperatorIf = [];
+
+    for (var jk = 0; jk < node.body.length; jk++) {
+      let statement = node.body[jk];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfOperatorIf.push(line);
+    }
+    var theInstructionsOperator = arrayOfOperatorIf.join("\n").toString();
+
+    const result = `
+      if(${comparisonsIf}){
+        ${theInstructionsOperator}
+      }
+    `;
+
+    return result;
+  } else if (node.type === "elseIfStatement") {
+    // node.comparisons
+    const comparisons = generateJsForStatementOrExpr(node.comparisons);
+
+    // node.body
+    var arrayOfOperatorElseIf = [];
+
+    for (var jkl = 0; jkl < node.body.length; jkl++) {
+      let statement = node.body[jkl];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfOperatorElseIf.push(line);
+    }
+    var theInstructionsOperatorElseIf = arrayOfOperatorElseIf
+      .join("\n")
+      .toString();
+
+    const result = `
+      else if(${comparisons}){
+        ${theInstructionsOperatorElseIf}
+      }
+    `;
+
+    return result;
+  } else if (node.type === "elseStatement") {
+    // node.body
+    var arrayOfOperatorElse = [];
+
+    for (var jghg = 0; jghg < node.body.length; jghg++) {
+      let statement = node.body[jghg];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfOperatorElse.push(line);
+    }
+    var theInstructionsOperatorElse = arrayOfOperatorElse.join("\n").toString();
+
+    const result = `
+      else {
+        ${theInstructionsOperatorElse}
+      }
+    `;
+
+    return result;
   } else {
     throw new Error(`Unhandled AST node type ${node.type}`);
   }
