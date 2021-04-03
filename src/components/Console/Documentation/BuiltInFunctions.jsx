@@ -90,7 +90,7 @@ const BuiltInFunctions = () => {
               speak(whatWhasPrinted)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> /# Hi welcome <br /> /# Hi welcome
+                /# Expected output <br /> /# Hi welcome <br /> /# Hi welcome
               </span>
             </CodeSimulator>
           </div>
@@ -288,7 +288,7 @@ const BuiltInFunctions = () => {
               speak(result)
               <br />
               <span style={{ color: "#AAA" }}>
-                /# Expected output: <br /> /# TypeError: Reduce of empty array
+                /# Expected output <br /> /# TypeError: Reduce of empty array
                 with no initial value
               </span>
             </CodeSimulator>
