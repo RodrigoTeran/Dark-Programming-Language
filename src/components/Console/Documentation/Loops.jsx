@@ -140,7 +140,7 @@ const LoopsDocumentation = () => {
               list = ["This" "is" "from, to" "loop"]
               <br />
               <br/>
-              from -&#62; 0 to 4 with i &#123;
+              from -&#62; 0 to discount(count(list) 1) with i &#123;
               <br/>
               &nbsp;&nbsp;&nbsp;&nbsp;speak(list[i])
               <br/>

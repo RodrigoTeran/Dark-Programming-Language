@@ -13,6 +13,16 @@ export const destroy = () => {
   return string;
 };
 
+export const count = () => {
+  const string = `const count = (...args) => {
+    if(Array.isArray(args[0])) {
+      return args[0].length;
+    }
+    return;
+  };`;
+  return string;
+};
+
 export const add = () => {
   const string = `const add = (...args) => {
     try {

@@ -12,6 +12,7 @@ import {
   discount,
   over,
   destroy,
+  count
 } from "./runtime";
 
 export function generateJsForStatements(statements, index, firstInstructions) {
@@ -75,6 +76,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           ${takeOutEnd()}
           ${takeOut()}
           ${insert()}
+          ${count()}
           ${insertEnd()}
           ${destroy()}
           ${firstInstructions}

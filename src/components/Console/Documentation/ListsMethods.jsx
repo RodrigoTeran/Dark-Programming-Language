@@ -19,6 +19,7 @@ const ListsMethods = () => {
           <li>Take out</li>
           <li>Insert End</li>
           <li>Insert</li>
+          <li>Count</li>
         </ul>
         <div
           className="containerConsole__documentationContainer__section__2"
@@ -262,6 +263,34 @@ const ListsMethods = () => {
             </CodeSimulator>
           </div>
         </div>
+        <div className="containerConsole__documentationContainer__section__2">
+          {/* ------------------------------------ Count ------------------------------------*/}
+          <h3>
+            <span>Count</span>
+          </h3>
+          <div className="containerConsole__documentationContainer__info">
+            <div>If you want to know the length of a list</div>
+            <div>then you need to call the count() function</div>
+            <br />
+            <div>Example:</div>
+            <CodeSimulator>
+              list = [1 2 3]
+              <br />
+              speak(count(list))
+              <br />
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: 3
+              </span>
+            </CodeSimulator>
+            <br/>
+            <div>
+              it only cares about the first parameter, and if it is not a list,
+            </div>
+            <div>
+              then it returns nothing
+            </div>
+          </div>
+        </div>        
       </div>
     </div>
   );
