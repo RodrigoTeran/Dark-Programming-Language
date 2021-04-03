@@ -25,6 +25,8 @@ statement
   | task_function               {% id %}
   | comments                    {% id %}
   | if_statement                {% id %}
+  | while_loop                  {% id %}
+  | for_loop                    {% id %}
   | elseIf_statement            {% id %}
   | else_statement              {% id %}  
   | _                           {% id %}
@@ -78,6 +80,18 @@ statementFunction
         return data[1];
       }
     %} 
+  | _ while_loop
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ for_loop
+    {%
+      (data) => {
+        return data[1];
+      }
+    %} 
   | _ elseIf_statement
     {%
       (data) => {
@@ -123,6 +137,18 @@ statementOperator
     %}
   | comments                    {% id %}
   | _ if_statement
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ while_loop
+    {%
+      (data) => {
+        return data[1];
+      }
+    %}
+  | _ for_loop
     {%
       (data) => {
         return data[1];
@@ -204,6 +230,28 @@ task_function -> "task" _ %arrow _ %identifier %lparen _ (param_list _):? %rpare
         parameters: data[7] ? data[7][0] : [],
         body: data[10],
         identifierName: data[4],
+      }
+    }
+  %}
+
+while_loop -> "period" _ %arrow comparisonsNearley operators_body _
+  {%
+    (data) => {
+      return {
+        type: "whileLoop",
+        comparisons: data[3],
+        body: data[4],
+      }
+    }
+  %}
+
+for_loop -> "from" _ %arrow for_looping_options operators_body _
+  {%
+    (data) => {
+      return {
+        type: "forLoop",
+        options: data[3],
+        body: data[4],
       }
     }
   %}
@@ -447,6 +495,18 @@ comparisonsNearley -> _ comparisons _
         }
       }
     %}
+
+for_looping_options -> _ expr __ "to" __ expr __ "with" __ %identifier _
+  {%
+    (data) => {
+      return {
+        type: "forOptions",
+        from: data[1],
+        to: data[5],
+        variable: data[9]
+      }
+    }
+  %}
 
 
 # Optional whitespace

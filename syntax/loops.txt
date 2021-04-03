@@ -22,3 +22,47 @@ from -> list with i {
     destroy()
   }
 }
+
+
+
+/# Stars with Loops
+
+numberStars = ask("Number of rows: ")
+counter = 1
+
+speak("--Stars--")
+period -> counter <= numberStars {
+	text = ""
+	auxCounter = counter
+	period -> auxCounter > 0 {
+		text = concat(text "* ")
+		auxCounter = discount(auxCounter 1)
+	}
+	speak(text)
+	counter = add(counter 1)
+}
+
+
+
+/# Factorial
+
+number = ask("Number: ")
+counter = 1
+
+res = 1
+speak("--Factorial of " number "--")
+period -> counter <= number {
+	res = dot(counter res)
+	counter = add(counter 1)
+}
+
+speak(res)
+
+
+
+
+lista = ["This" "is" "for" "loop" ":)"]
+
+from -> 0 to 4 with i {
+	speak(">  " lista[i])
+}

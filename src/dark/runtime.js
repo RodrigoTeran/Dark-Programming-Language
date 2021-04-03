@@ -6,6 +6,13 @@ export const speak = () => {
   return string;
 };
 
+export const destroy = () => {
+  const string = `const destroy = () => {
+    return;
+  };`;
+  return string;
+};
+
 export const add = () => {
   const string = `const add = (...args) => {
     try {

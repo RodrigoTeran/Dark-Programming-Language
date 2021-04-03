@@ -145,20 +145,21 @@ const BuiltInFunctions = () => {
             <span>discount()</span>
           </h3>
           <div className="containerConsole__documentationContainer__info">
-            <div>
-              This function discounts each value from the one before
-            </div>
+            <div>This function discounts each value from the one before</div>
             <div>This function is better used with numbers as well...</div>
             <CodeSimulator>
               res = discount(10 5 2)
               <br />
               speak("Result: " res)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Result: 3</span>
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: Result: 3
+              </span>
             </CodeSimulator>
             <br />
             <div>
-              also, it still works when it is passed numbers values as strings and also it ignores the non number values
+              also, it still works when it is passed numbers values as strings
+              and also it ignores the non number values
             </div>
           </div>
         </div>
@@ -217,22 +218,20 @@ const BuiltInFunctions = () => {
             <span>over()</span>
           </h3>
           <div className="containerConsole__documentationContainer__info">
-            <div>
-              This function divides each value from the one before
-            </div>
+            <div>This function divides each value from the one before</div>
             <CodeSimulator>
               res = over(15.5 0.5)
               <br />
               speak("Result: " res)
               <br />
-              <span style={{ color: "#AAA" }}>/# Expected output: Result: 31</span>
+              <span style={{ color: "#AAA" }}>
+                /# Expected output: Result: 31
+              </span>
             </CodeSimulator>
             <br />
-            <div>
-              also, it is as clever as the other ones...
-            </div>
+            <div>also, it is as clever as the other ones...</div>
           </div>
-        </div>        
+        </div>
         <div className="containerConsole__documentationContainer__section__2">
           {/* ------------------------------------ concat() ------------------------------------*/}
           <h3>
@@ -353,6 +352,18 @@ const BuiltInFunctions = () => {
               <br />
               <span style={{ color: "#AAA" }}>/# Expected output: Name</span>
             </CodeSimulator>
+            <br />
+            <div>
+              <span style={{ color: "#F00" }}> WATCH OUT!...</span>
+              <br />
+              <br />
+              for now, you can only use this function in the root level, so you
+              can not use it inside functions,
+            </div>
+            <div>
+              loops and conditionals... but dont worry, we are working on it :)
+            </div>
+            <br />
           </div>
         </div>
       </div>

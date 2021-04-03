@@ -30,6 +30,8 @@ var grammar = {
     { name: "statement", symbols: ["task_function"], postprocess: id },
     { name: "statement", symbols: ["comments"], postprocess: id },
     { name: "statement", symbols: ["if_statement"], postprocess: id },
+    { name: "statement", symbols: ["while_loop"], postprocess: id },
+    { name: "statement", symbols: ["for_loop"], postprocess: id },
     { name: "statement", symbols: ["elseIf_statement"], postprocess: id },
     { name: "statement", symbols: ["else_statement"], postprocess: id },
     { name: "statement", symbols: ["_"], postprocess: id },
@@ -87,6 +89,20 @@ var grammar = {
     {
       name: "statementFunction",
       symbols: ["_", "if_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "while_loop"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementFunction",
+      symbols: ["_", "for_loop"],
       postprocess: (data) => {
         return data[1];
       },
@@ -165,6 +181,20 @@ var grammar = {
     {
       name: "statementOperator",
       symbols: ["_", "if_statement"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "while_loop"],
+      postprocess: (data) => {
+        return data[1];
+      },
+    },
+    {
+      name: "statementOperator",
+      symbols: ["_", "for_loop"],
       postprocess: (data) => {
         return data[1];
       },
@@ -342,6 +372,42 @@ var grammar = {
           parameters: data[7] ? data[7][0] : [],
           body: data[10],
           identifierName: data[4],
+        };
+      },
+    },
+    {
+      name: "while_loop",
+      symbols: [
+        { literal: "period" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "comparisonsNearley",
+        "operators_body",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "whileLoop",
+          comparisons: data[3],
+          body: data[4],
+        };
+      },
+    },
+    {
+      name: "for_loop",
+      symbols: [
+        { literal: "from" },
+        "_",
+        lexer.has("arrow") ? { type: "arrow" } : "arrow",
+        "for_looping_options",
+        "operators_body",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "forLoop",
+          options: data[3],
+          body: data[4],
         };
       },
     },
@@ -762,6 +828,30 @@ var grammar = {
         return {
           type: "comparisons",
           value: data[1],
+        };
+      },
+    },
+    {
+      name: "for_looping_options",
+      symbols: [
+        "_",
+        "expr",
+        "__",
+        { literal: "to" },
+        "__",
+        "expr",
+        "__",
+        { literal: "with" },
+        "__",
+        lexer.has("identifier") ? { type: "identifier" } : "identifier",
+        "_",
+      ],
+      postprocess: (data) => {
+        return {
+          type: "forOptions",
+          from: data[1],
+          to: data[5],
+          variable: data[9],
         };
       },
     },

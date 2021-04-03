@@ -11,6 +11,7 @@ import {
   insertEnd,
   discount,
   over,
+  destroy,
 } from "./runtime";
 
 export function generateJsForStatements(statements, index, firstInstructions) {
@@ -75,6 +76,7 @@ export function generateJsForStatements(statements, index, firstInstructions) {
           ${takeOut()}
           ${insert()}
           ${insertEnd()}
+          ${destroy()}
           ${firstInstructions}
           ${theInstructions}
       
@@ -121,6 +123,10 @@ function generateJsForStatementOrExpr(node) {
     return js;
   } else if (node.type === "fun_call") {
     const funName = node.fun_name.value;
+    // Check if it is destroy()
+    if (funName === "destroy") {
+      return `break;`;
+    }
     const argList = node.arguments
       .map((arg) => {
         return generateJsForStatementOrExpr(arg);
@@ -278,6 +284,53 @@ function generateJsForStatementOrExpr(node) {
     const result = `
       else {
         ${theInstructionsOperatorElse}
+      }
+    `;
+
+    return result;
+  } else if (node.type === "whileLoop") {
+    // node.comparisons
+    const comparisonsWhile = generateJsForStatementOrExpr(node.comparisons);
+
+    // node.body
+    var arrayOfOperatorWhile = [];
+
+    for (var jkfdffs = 0; jkfdffs < node.body.length; jkfdffs++) {
+      let statement = node.body[jkfdffs];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfOperatorWhile.push(line);
+    }
+    var theInstructionsOperatorWhile = arrayOfOperatorWhile
+      .join("\n")
+      .toString();
+
+    const result = `
+      while(${comparisonsWhile}){
+        ${theInstructionsOperatorWhile}
+      }
+    `;
+    return result;
+  } else if (node.type === "forLoop") {
+    // node.body
+    var arrayOfOperatorFor = [];
+
+    for (var ihdiuev = 0; ihdiuev < node.body.length; ihdiuev++) {
+      let statement = node.body[ihdiuev];
+      const line = generateJsForStatementOrExpr(statement);
+      arrayOfOperatorFor.push(line);
+    }
+    var theInstructionsOperatorFor = arrayOfOperatorFor.join("\n").toString();
+
+    const { from, to, variable } = node.options;
+
+    const realFrom = generateJsForStatementOrExpr(from);
+    const realTo = generateJsForStatementOrExpr(to);
+    const realVariable = generateJsForStatementOrExpr(variable);
+
+
+    const result = `
+      for(var ${realVariable} = ${realFrom}; ${realVariable} <= ${realTo}; ${realVariable}++){
+        ${theInstructionsOperatorFor}
       }
     `;
 

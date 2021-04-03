@@ -1,3 +1,24 @@
 and  // equal to &&
 or  // equal to ||
 not  // equal to !
+
+
+
+/# THIS IS AN EXAMPLE OF HOW A DARK PROGRAM LOOKS LIKE
+/# If you want to learn this language click in the "i" icon on the right
+/# to read the documentation
+
+numberStars = ask("Number of rows: ")
+counter = 1
+
+speak("--Stars--")
+period -> counter <= numberStars {
+    text = ""
+    auxCounter = counter
+    period -> auxCounter > 0 {
+        text = concat(text "* ")
+        auxCounter = discount(auxCounter 1)
+    }
+    speak(text)
+    counter = add(counter 1)
+}

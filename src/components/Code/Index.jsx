@@ -1,5 +1,5 @@
 // React
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const IndexCode = ({ codeRef, textAreaCodeRef, isConsoleEditable }) => {
   // Hooks
@@ -10,6 +10,15 @@ const IndexCode = ({ codeRef, textAreaCodeRef, isConsoleEditable }) => {
     // Transform the rows
     rowsRef.current.style.transform = `translateY(-${e.target.scrollTop}px)`;
   };
+  useEffect(() => {
+    var value = `/# THIS IS AN EXAMPLE OF HOW A DARK PROGRAM LOOKS LIKE\n/# If you want to learn this language click in the "i" icon on the right\n/# to read the documentation\n\nnumberStars = ask("Number of rows: ")\ncounter = 1\n\nspeak("--Stars--")\nperiod -> counter <= numberStars {\n\ttext = ""\n\tauxCounter = counter\n\tperiod -> auxCounter > 0 {\n\t\ttext = concat(text "* ")\n\t\tauxCounter = discount(auxCounter 1)\n\t}\n\tspeak(text)\n\tcounter = add(counter 1)\n}\n`;
+    textAreaCodeRef.current.defaultValue = value;
+    onTextAreaChange({
+      target: {
+        value,
+      },
+    });
+  }, []);
   const onTextAreaChange = (e) => {
     var textTextArea = e.target.value;
     var numberRows = textTextArea.split("\n").length;

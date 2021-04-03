@@ -10,6 +10,7 @@ import ListsMethods from "./Documentation/ListsMethods";
 import Tasks from "./Documentation/Tasks";
 import CommentsDocumentation from "./Documentation/Comments";
 import ConditionalsDocumentation from "./Documentation/Conditionals";
+import LoopsDocumentation from "./Documentation/Loops";
 
 const IndexConsole = ({
   consoleRef,
@@ -84,6 +85,7 @@ const IndexConsole = ({
           <CommentsDocumentation></CommentsDocumentation>
           <ListsMethods></ListsMethods>
           <ConditionalsDocumentation></ConditionalsDocumentation>
+          <LoopsDocumentation></LoopsDocumentation>
           <Tasks></Tasks>
           <BuiltInFunctions></BuiltInFunctions>
         </div>
